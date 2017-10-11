@@ -14,4 +14,9 @@ public class ClientService {
     public Client findByPhone(String phone) {
         return clientRepository.findByPhone(phone);
     }
+
+    @Transactional
+    public void create(Client client){
+        clientRepository.saveAndFlush(client);
+    }
 }

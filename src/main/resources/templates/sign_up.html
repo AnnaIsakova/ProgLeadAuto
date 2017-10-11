@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div style="text-align: center">
+        Sign up as a manager or admin
+    </div>
+    <div style="text-align: center; margin-top: 10px">
+        <form th:action="@{/sign_up}" th:object="${client}" method="post">
+            Name: <input type="text" th:field="*{name}" /><br/>
+            Surname: <input type="text" th:field="*{surname}" /><br/>
+            Phone 1*: <input type="text" th:field="*{phone}" /><br/>
+            Phone 2: <input type="text" th:field="*{phone2}" /><br/>
+            Phone 3: <input type="text" th:field="*{phone3}" /><br/>
+            Email: <input type="text" th:field="*{email}" /><br/>
+            Skype: <input type="text" th:field="*{skype}" /><br/>
+            Facebook: <input type="text" th:field="*{facebook}" /><br/>
+            Password*: <input type="text" th:field="*{password}" /><br/>
+            <!--Role*:-->
+            <!--<select th:field="*{role}">-->
+                <!--<option value="0">select role</option>-->
+                <!--<option th:each="userRole : ${roles}" th:value="${userRole}" th:text="${userRole}"></option>-->
+            <!--</select>-->
+            <br/>
+            <input type="submit" value="Sign up" />
+        </form>
+    </div>
+</body>
+</html>

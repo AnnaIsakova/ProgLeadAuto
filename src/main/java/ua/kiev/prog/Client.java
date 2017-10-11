@@ -41,4 +41,36 @@ public class Client {
 
     @Column(unique = true)
     private String facebook;
+
+    public ClientDTO toDTO(){
+        ClientDTO clientDTO = new ClientDTO();
+        clientDTO.setId(this.id);
+        clientDTO.setRole(this.role);
+        clientDTO.setPhone(this.phone);
+        clientDTO.setPhone2(this.phone2);
+        clientDTO.setPhone3(this.phone3);
+        clientDTO.setName(this.name);
+        clientDTO.setSurname(this.surname);
+        clientDTO.setPassword(this.password);
+        clientDTO.setEmail(this.email);
+        clientDTO.setSkype(this.skype);
+        clientDTO.setFacebook(this.facebook);
+        return clientDTO;
+    }
+
+    public static Client fromDTO(ClientDTO clientDTO){
+        Client client = new Client();
+        client.setId(clientDTO.getId());
+        client.setRole(clientDTO.getRole());
+        client.setPhone(clientDTO.getPhone());
+        client.setPhone2(clientDTO.getPhone2());
+        client.setPhone3(clientDTO.getPhone3());
+        client.setName(clientDTO.getName());
+        client.setSurname(clientDTO.getSurname());
+        client.setPassword(clientDTO.getPassword());
+        client.setEmail(clientDTO.getEmail());
+        client.setSkype(clientDTO.getSkype());
+        client.setFacebook(clientDTO.getFacebook());
+        return client;
+    }
 }
