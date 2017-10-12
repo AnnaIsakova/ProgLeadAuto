@@ -22,10 +22,13 @@
             <input type="submit" value="Register" />
         </form>
     </div>
-    <div style="text-align: center; margin-top: 10px">
+    <div align="center" style="text-align: center; margin-top: 10px">
         <div sec:authorize="hasRole('ROLE_ADMIN')">
-            HELLO
+            <button><a href="/admin/client/all">All clients</a></button>
         </div>
+    </div>
+    <div align="center" style="margin-top: 10px">
+        <button><a href="/logout">Log out</a></button>
     </div>
 </body>
 </html>
