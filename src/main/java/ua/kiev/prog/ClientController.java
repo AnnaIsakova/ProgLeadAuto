@@ -26,9 +26,10 @@ public class ClientController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String addClient(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
 
+        userValidator.setClient(true);
         userValidator.validate(clientDTO, bindingResult);
         if (bindingResult.hasErrors()){
-            throw new IllegalArgumentException("User Not Valid");
+            throw new IllegalArgumentException("Phone is required");
         }
 
         clientDTO.setRole(UserRole.USER);

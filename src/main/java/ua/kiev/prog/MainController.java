@@ -32,9 +32,10 @@ public class MainController {
     @RequestMapping(value = { "/sign_up"}, method = RequestMethod.POST)
     public String addClient(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
 
+        userValidator.setClient(false);
         userValidator.validate(clientDTO, bindingResult);
         if (bindingResult.hasErrors()){
-            throw new IllegalArgumentException("User Not Valid");
+            throw new IllegalArgumentException("Phone and password required");
         }
 
         Client client = Client.fromDTO(clientDTO);

@@ -9,6 +9,7 @@ import org.springframework.validation.Validator;
 @Component
 public class UserValidator implements Validator {
 
+    private boolean isClient = true;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -20,6 +21,13 @@ public class UserValidator implements Validator {
         ClientDTO clientDTO = (ClientDTO) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "NotEmpty");
+        if (!isClient){
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+        }
+    }
+
+    public void setClient(boolean client) {
+        isClient = client;
     }
 }
 
