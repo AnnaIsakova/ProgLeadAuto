@@ -33,22 +33,51 @@ public class ClientService {
     }
 
     @Transactional
-    public void create(Client client){
-        if (client.getPassword() != null){
-            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-            String passHash = encoder.encodePassword(client.getPassword(), null);
-            client.setPassword(passHash);
+    public ClientDTO getById(long id){
+        Client client = clientRepository.findOne(id);
+        if (client == null) return null;
+        return client.toDTO();
+    }
+
+    @Transactional
+    public void create(ClientDTO clientDTO){
+        String phone = clientRepository.findPhone(clientDTO.getPhone());
+        if (phone != null) {
+            throw new RuntimeException("User with such phone already exists");
         }
+        if (clientDTO.getPassword() != null){
+            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+            String passHash = encoder.encodePassword(clientDTO.getPassword(), null);
+            clientDTO.setPassword(passHash);
+        }
+        Client client = Client.fromDTO(clientDTO);
+        clientRepository.saveAndFlush(client);
+    }
+
+    @Transactional
+    public void edit(ClientDTO clientDTO){
+        Client client = clientRepository.findOne(clientDTO.getId());
+        String phone = clientRepository.findPhone(clientDTO.getPhone());
+        if (phone != null) {
+            throw new RuntimeException("User with such phone already exists");
+        }
+        if (client == null) return;
+        client.setName(clientDTO.getName());
+        client.setSurname(clientDTO.getSurname());
+        client.setPhone(clientDTO.getPhone());
+        client.setPhone2(clientDTO.getPhone2());
+        client.setPhone3(clientDTO.getPhone3());
+        client.setSkype(clientDTO.getSkype());
+        client.setFacebook(clientDTO.getFacebook());
+        client.setEmail(clientDTO.getEmail());
         clientRepository.saveAndFlush(client);
     }
 
     @Transactional
     public void delete(long id){
         Client client = clientRepository.findOne(id);
-        System.out.println("CLIENT: " + client.getPhone());
-        System.out.println("CLIENT: " + client.isDeleted());
         client.setDeleted(true);
-        System.out.println(client.isDeleted());
         clientRepository.saveAndFlush(client);
     }
+
 }

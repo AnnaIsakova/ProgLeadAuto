@@ -42,10 +42,35 @@ public class ClientController {
         }
 
         clientDTO.setRole(UserRole.USER);
-        Client client = Client.fromDTO(clientDTO);
-        System.out.println(client.getPassword());
-        clientService.create(client);
+        clientService.create(clientDTO);
         return "register";
+    }
+
+    @RequestMapping(value = "admin/client/edit", method = RequestMethod.GET)
+    public String getEditClientPage(
+            @RequestParam("clientId") long id,
+            @ModelAttribute("client") ClientDTO clientDTO,
+            BindingResult bindingResult,
+            Model model){
+        clientDTO = clientService.getById(id);
+        model.addAttribute("client", clientDTO);
+        return "edit_client";
+    }
+
+    @RequestMapping(value = "admin/client/edit", method = RequestMethod.POST)
+    public String editClient(
+            @ModelAttribute("client") ClientDTO clientDTO,
+            BindingResult bindingResult,
+            Model model){
+
+        userValidator.setClient(true);
+        userValidator.validate(clientDTO, bindingResult);
+        if (bindingResult.hasErrors()){
+            throw new IllegalArgumentException("Phone is required");
+        }
+
+        clientService.edit(clientDTO);
+        return "redirect:/admin/client/all";
     }
 
     @RequestMapping(value = "/admin/client/delete")

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <h3>Editing client</h3>
+    </div>
+    <form th:action="@{/admin/client/edit}" th:object="${client}" method="POST">
+        Name: <input type="hidden" th:field="*{id}"/><br/>
+        Name: <input type="text" th:field="*{name}"  th:text="*{name}"/><br/>
+        Surname: <input type="text" th:field="*{surname}" th:text="*{surname}"/><br/>
+        Phone 1*: <input type="text" th:field="*{phone}"/><br/>
+        Phone 2: <input type="text" th:field="*{phone2}" /><br/>
+        Phone 3: <input type="text" th:field="*{phone3}" /><br/>
+        Email: <input type="text" th:field="*{email}" /><br/>
+        Skype: <input type="text" th:field="*{skype}" /><br/>
+        Facebook: <input type="text" th:field="*{facebook}" /><br/>
+        <br/>
+        <input type="submit" value="Save" />
+    </form>
+</body>
+</html>

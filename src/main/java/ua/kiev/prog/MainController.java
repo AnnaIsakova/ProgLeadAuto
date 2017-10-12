@@ -22,10 +22,6 @@ public class MainController {
 
     @RequestMapping(value = "/sign_up", method = RequestMethod.GET)
     public String getSignUpPage(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
-        List<UserRole> roles = new ArrayList<>();
-        roles.add(UserRole.ADMIN);
-        roles.add(UserRole.MANAGER);
-//        model.addAttribute("roles", roles);
         return "sign_up";
     }
 
@@ -38,11 +34,8 @@ public class MainController {
             throw new IllegalArgumentException("Phone and password required");
         }
 
-        Client client = Client.fromDTO(clientDTO);
-        //temp workaround
-        client.setRole(UserRole.MANAGER);
-
-        clientService.create(client);
+        clientDTO.setRole(UserRole.MANAGER);
+        clientService.create(clientDTO);
         return "redirect:/login";
     }
 

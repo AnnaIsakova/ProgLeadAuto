@@ -38,9 +38,11 @@
                     <td th:text="${client.facebook}"></td>
                     <td th:text="${client.role}"></td>
                     <td>
-                        <form method="POST" th:action="@{/admin/edit(clientId=${client.id})}">
-                            <button type="submit" name="submit" value="value" class="link-button">EDIT</button>
-                        </form>
+                            <button name="submit" value="value" class="link-button">
+                                <a th:href="@{/admin/client/edit(clientId=${client.id})}">
+                                    Edit
+                                </a>
+                            </button>
                         <form method="POST" th:action="@{/admin/client/delete(clientId=${client.id})}">
                             <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
                         </form>
