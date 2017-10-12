@@ -9,7 +9,7 @@
         <div>
             <h3>Editing client</h3>
         </div>
-        <form th:action="@{/admin/client/edit}" th:object="${client}" method="POST">
+        <form th:action="@{/admin/clients/edit}" th:object="${client}" method="POST">
             Name: <input type="hidden" th:field="*{id}"/><br/>
             Name: <input type="text" th:field="*{name}"  th:text="*{name}"/><br/>
             Surname: <input type="text" th:field="*{surname}" th:text="*{surname}"/><br/>
@@ -23,7 +23,7 @@
             <input type="submit" value="Save" />
         </form>
         <div align="center" style="text-align: center; margin-top: 10px">
-            <button><a href="/admin/client/all">Return to clients</a></button>
+            <button><a href="/admin/clients/all">Return to clients</a></button>
         </div>
         <div align="center" style="margin-top: 10px">
             <button><a href="/logout">Log out</a></button>

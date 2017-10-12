@@ -39,11 +39,11 @@
                     <td th:text="${client.role}"></td>
                     <td>
                             <button name="submit" value="value" class="link-button">
-                                <a th:href="@{/admin/client/edit(clientId=${client.id})}">
+                                <a th:href="@{/admin/clients/edit(clientId=${client.id})}">
                                     Edit
                                 </a>
                             </button>
-                        <form method="POST" th:action="@{/admin/client/delete(clientId=${client.id})}">
+                        <form method="POST" th:action="@{/admin/clients/delete(clientId=${client.id})}">
                             <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
                         </form>
                     </td>

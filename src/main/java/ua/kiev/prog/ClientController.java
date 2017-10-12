@@ -20,12 +20,6 @@ public class ClientController {
     @Autowired
     private UserValidator userValidator;
 
-    @RequestMapping(value = "/admin/client/all", method = RequestMethod.GET)
-    public String getAllClients(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
-        List<ClientDTO> clients = clientService.getAll();
-        model.addAttribute("clients", clients);
-        return "admin";
-    }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegisterPage(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
@@ -46,7 +40,14 @@ public class ClientController {
         return "register";
     }
 
-    @RequestMapping(value = "admin/client/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/clients/all", method = RequestMethod.GET)
+    public String getAllClients(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
+        List<ClientDTO> clients = clientService.getAll();
+        model.addAttribute("clients", clients);
+        return "admin";
+    }
+
+    @RequestMapping(value = "admin/clients/edit", method = RequestMethod.GET)
     public String getEditClientPage(
             @RequestParam("clientId") long id,
             @ModelAttribute("client") ClientDTO clientDTO,
@@ -57,7 +58,7 @@ public class ClientController {
         return "edit_client";
     }
 
-    @RequestMapping(value = "admin/client/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "admin/clients/edit", method = RequestMethod.POST)
     public String editClient(
             @ModelAttribute("client") ClientDTO clientDTO,
             BindingResult bindingResult,
@@ -70,13 +71,13 @@ public class ClientController {
         }
 
         clientService.edit(clientDTO);
-        return "redirect:/admin/client/all";
+        return "redirect:/admin/clients/all";
     }
 
-    @RequestMapping(value = "/admin/client/delete")
+    @RequestMapping(value = "/admin/clients/delete")
     public String deleteClient(@RequestParam("clientId") long id){
         clientService.delete(id);
-        return "redirect:/admin/client/all";
+        return "redirect:/admin/clients/all";
     }
 
 
