@@ -5,6 +5,9 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ClientService {
 
@@ -26,5 +29,16 @@ public class ClientService {
             client.setPassword(passHash);
         }
         clientRepository.saveAndFlush(client);
+    }
+
+    @Transactional
+    public List<ClientDTO> getAll(){
+        List<Client> clients = clientRepository.findAll();
+        List<ClientDTO> clientDTOS = new ArrayList<>();
+        for (Client client:clients) {
+            if (client.getRole() != UserRole.ADMIN)
+            clientDTOS.add(client.toDTO());
+        }
+        return clientDTOS;
     }
 }

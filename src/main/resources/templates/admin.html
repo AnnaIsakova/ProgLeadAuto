@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div style="text-align: center">
+        <h2>Hello, admin!</h2>
+    </div>
+    <div style="text-align: center; margin-top: 15px">
+        <h3>All clients</h3>
+        <table align="center" border="1px">
+            <tr>
+                <td>Name</td>
+                <td>Surname</td>
+                <td>Phone</td>
+                <td>Role</td>
+                <td>Actions</td>
+            </tr>
+
+            <th:block th:each="client : ${clients}">
+                <tr>
+                    <td th:text="${client.name}"></td>
+                    <td th:text="${client.surname}"></td>
+                    <td th:text="${client.phone}"></td>
+                    <td th:text="${client.role}"></td>
+                    <td>
+                        <!--<form method="POST" th:action="@{/edit(personId=${client.id})}">-->
+                            <button type="submit" name="submit" value="value" class="link-button">EDIT</button>
+                        <!--</form> |-->
+                        <!--<form method="POST" th:action="@{/delete(personId=${client.id})}">-->
+                            <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
+                        <!--</form>-->
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+</body>
+</html>
