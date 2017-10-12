@@ -54,8 +54,7 @@ public class MainController {
         client.setRole(UserRole.MANAGER);
 
         clientService.create(client);
-//        securityService.autologin(client.getPhone(), client.getPassword());
-        return "redirect:/register";
+        return "redirect:/login";
     }
 
     @RequestMapping("/login")

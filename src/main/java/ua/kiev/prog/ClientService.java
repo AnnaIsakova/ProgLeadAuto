@@ -20,9 +20,11 @@ public class ClientService {
 
     @Transactional
     public void create(Client client){
-        ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-        String passHash = encoder.encodePassword(client.getPassword(), null);
-        client.setPassword(passHash);
+        if (client.getPassword() != null){
+            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+            String passHash = encoder.encodePassword(client.getPassword(), null);
+            client.setPassword(passHash);
+        }
         clientRepository.saveAndFlush(client);
     }
 }

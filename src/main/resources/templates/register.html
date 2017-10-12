@@ -5,8 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-    <div>
-        Register page
+    <div style="text-align: center">
+        Register new client
+    </div>
+    <div style="text-align: center; margin-top: 10px">
+        <form th:action="@{/register}" th:object="${client}" method="post">
+            Name: <input type="text" th:field="*{name}" /><br/>
+            Surname: <input type="text" th:field="*{surname}" /><br/>
+            Phone 1*: <input type="text" th:field="*{phone}" /><br/>
+            Phone 2: <input type="text" th:field="*{phone2}" /><br/>
+            Phone 3: <input type="text" th:field="*{phone3}" /><br/>
+            Email: <input type="text" th:field="*{email}" /><br/>
+            Skype: <input type="text" th:field="*{skype}" /><br/>
+            Facebook: <input type="text" th:field="*{facebook}" /><br/>
+            <br/>
+            <input type="submit" value="Register" />
+        </form>
     </div>
 </body>
 </html>
