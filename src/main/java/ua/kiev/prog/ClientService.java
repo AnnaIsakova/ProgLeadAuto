@@ -17,7 +17,7 @@ public class ClientService {
     @Transactional(readOnly = true)
     public ClientDTO findByPhone(String phone) {
         Client client = clientRepository.findByPhone(phone);
-        if (client == null) return null;
+        if (client == null) throw new RuntimeException("Client you're trying to edit does not exist");
         return client.toDTO();
     }
 
@@ -35,15 +35,17 @@ public class ClientService {
     @Transactional
     public ClientDTO getById(long id){
         Client client = clientRepository.findOne(id);
-        if (client == null) return null;
+        if (client == null) throw new RuntimeException("Client you're trying to get does not exist");
         return client.toDTO();
     }
 
     @Transactional
     public void create(ClientDTO clientDTO){
-        String phone = clientRepository.findPhone(clientDTO.getPhone());
-        if (phone != null) {
-            throw new RuntimeException("User with such phone already exists");
+        if (hasSomeoneSamePhoneForCreating(
+                clientDTO.getPhone(),
+                clientDTO.getPhone2(),
+                clientDTO.getPhone3())){
+            throw new RuntimeException("Someone else has the same phone");
         }
         if (clientDTO.getPassword() != null){
             ShaPasswordEncoder encoder = new ShaPasswordEncoder();
@@ -57,11 +59,14 @@ public class ClientService {
     @Transactional
     public void edit(ClientDTO clientDTO){
         Client client = clientRepository.findOne(clientDTO.getId());
-        String phone = clientRepository.findPhone(clientDTO.getPhone());
-        if (phone != null) {
-            throw new RuntimeException("User with such phone already exists");
+        if (client == null) throw new RuntimeException("Client you're trying to edit does not exist");
+        if (hasSomeoneSamePhoneForEditing(
+                clientDTO.getPhone(),
+                clientDTO.getPhone2(),
+                clientDTO.getPhone3(),
+                clientDTO.getId())){
+            throw new RuntimeException("Someone else has the same phone");
         }
-        if (client == null) return;
         client.setName(clientDTO.getName());
         client.setSurname(clientDTO.getSurname());
         client.setPhone(clientDTO.getPhone());
@@ -76,8 +81,45 @@ public class ClientService {
     @Transactional
     public void delete(long id){
         Client client = clientRepository.findOne(id);
+        if (client == null) throw new RuntimeException("Client you're trying to delete does not exist");
         client.setDeleted(true);
         clientRepository.saveAndFlush(client);
     }
 
+    private boolean hasSomeoneSamePhoneForEditing(String phone, String phone2, String phone3, long id){
+        System.out.println(phone);
+        System.out.println(phone2);
+        System.out.println(phone3);
+        System.out.println(id);
+        if (phone != null) {
+            phone = clientRepository.findPhone(phone, id);
+            System.out.println("PHONE: " + phone);
+        }
+        if (phone2 != null){
+            phone2 = clientRepository.findPhone(phone2, id);
+            System.out.println("PHONE2: " + phone2);
+        }
+        if (phone3 != null){
+            phone3 = clientRepository.findPhone(phone3, id);
+            System.out.println("PHONE3: " + phone3);
+        }
+
+        return (phone != null || phone2 != null || phone3 != null);
+    }
+
+    private boolean hasSomeoneSamePhoneForCreating(String phone, String phone2, String phone3){
+        Client client = null;
+        if (phone != null) {
+            client = clientRepository.findByPhone(phone);
+        }
+        Client client2 = null;
+        if (phone2 != null){
+            client2 = clientRepository.findByPhone(phone2);
+        }
+        Client client3 = null;
+        if (phone3 != null){
+            client3 = clientRepository.findByPhone(phone3);
+        }
+        return (client != null || client2 != null || client3 != null);
+    }
 }
