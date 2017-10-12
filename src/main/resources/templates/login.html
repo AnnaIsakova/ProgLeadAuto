@@ -5,8 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-    <p>
-        login page
-    </p>
+<div style="text-align: center">
+    Please, log in
+</div>
+<div style="text-align: center; margin-top: 10px">
+    <form th:action="@{/j_spring_security_check}" method="post">
+        <label for="j_login">Username</label>:
+        <input type="text" id="j_login" name="j_login" autofocus="autofocus" /> <br />
+        <label for="j_password">Password</label>:
+        <input type="password" id="j_password" name="j_password" /> <br />
+        <input type="submit" value="Log in" />
+    </form>
+    <span th:if="${param.error != null}"
+          th:text="${'wrong login or pass'}">
+    </span>
+</div>
 </body>
 </html>

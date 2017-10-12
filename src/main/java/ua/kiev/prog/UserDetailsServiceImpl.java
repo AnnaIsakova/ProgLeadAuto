@@ -14,19 +14,22 @@ import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
     @Autowired
     private ClientService clientService;
 
     @Override
-    public UserDetails loadUserByUsername(String phone)
-            throws UsernameNotFoundException {
-        Client client = clientService.findByPhone(phone);
+    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
+        ClientDTO client = clientService.findByPhone(phone);
+        System.out.println("CLIENT loadUserByUsername " + client);
         if (client == null)
-            throw new UsernameNotFoundException(phone + " not found");
+            throw new UsernameNotFoundException("User with phone " + phone + " not found");
 
         Set<GrantedAuthority> roles = new HashSet<>();
         roles.add(new SimpleGrantedAuthority(client.getRole().toString()));
 
-        return new User(client.getPhone(), client.getPassword(), roles);
+        User user = new User(client.getPhone(), client.getPassword(), roles);
+        System.out.println(user);
+        return user;
     }
 }
