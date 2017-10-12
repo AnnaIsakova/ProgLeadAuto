@@ -3,8 +3,6 @@ package ua.kiev.prog;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +15,8 @@ public class ClientController {
 
     @Autowired
     ClientService clientService;
+    @Autowired
+    private UserValidator userValidator;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegisterPage(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
@@ -25,6 +25,12 @@ public class ClientController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String addClient(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
+
+        userValidator.validate(clientDTO, bindingResult);
+        if (bindingResult.hasErrors()){
+            throw new IllegalArgumentException("User Not Valid");
+        }
+
         clientDTO.setRole(UserRole.USER);
         Client client = Client.fromDTO(clientDTO);
         System.out.println(client.getPassword());
