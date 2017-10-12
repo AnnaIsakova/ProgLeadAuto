@@ -42,6 +42,8 @@ public class Client {
     @Column(unique = true)
     private String facebook;
 
+    private boolean isDeleted;
+
     public ClientDTO toDTO(){
         ClientDTO clientDTO = new ClientDTO();
         clientDTO.setId(this.id);

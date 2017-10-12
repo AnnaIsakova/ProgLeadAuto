@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +20,7 @@ public class ClientController {
     @Autowired
     private UserValidator userValidator;
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/client/all", method = RequestMethod.GET)
     public String getAllClients(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
         List<ClientDTO> clients = clientService.getAll();
         model.addAttribute("clients", clients);
@@ -47,6 +46,12 @@ public class ClientController {
         System.out.println(client.getPassword());
         clientService.create(client);
         return "register";
+    }
+
+    @RequestMapping(value = "/admin/client/delete")
+    public String deleteClient(@RequestParam("clientId") long id){
+        clientService.delete(id);
+        return "redirect:/admin/client/all";
     }
 
 

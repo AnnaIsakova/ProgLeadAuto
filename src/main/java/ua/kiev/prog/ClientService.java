@@ -22,6 +22,17 @@ public class ClientService {
     }
 
     @Transactional
+    public List<ClientDTO> getAll(){
+        List<Client> clients = clientRepository.findAll();
+        List<ClientDTO> clientDTOS = new ArrayList<>();
+        for (Client client:clients) {
+            if (client.getRole() != UserRole.ADMIN)
+                clientDTOS.add(client.toDTO());
+        }
+        return clientDTOS;
+    }
+
+    @Transactional
     public void create(Client client){
         if (client.getPassword() != null){
             ShaPasswordEncoder encoder = new ShaPasswordEncoder();
@@ -32,13 +43,12 @@ public class ClientService {
     }
 
     @Transactional
-    public List<ClientDTO> getAll(){
-        List<Client> clients = clientRepository.findAll();
-        List<ClientDTO> clientDTOS = new ArrayList<>();
-        for (Client client:clients) {
-            if (client.getRole() != UserRole.ADMIN)
-            clientDTOS.add(client.toDTO());
-        }
-        return clientDTOS;
+    public void delete(long id){
+        Client client = clientRepository.findOne(id);
+        System.out.println("CLIENT: " + client.getPhone());
+        System.out.println("CLIENT: " + client.isDeleted());
+        client.setDeleted(true);
+        System.out.println(client.isDeleted());
+        clientRepository.saveAndFlush(client);
     }
 }
