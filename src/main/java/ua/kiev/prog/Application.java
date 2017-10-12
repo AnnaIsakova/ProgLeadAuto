@@ -23,13 +23,13 @@ public class Application {
 
 				Client manager = new Client();
 				manager.setPhone("111");
-				manager.setPassword("111"); //password
+				manager.setPassword("111");
 				manager.setRole(UserRole.MANAGER);
 				clientService.create(manager.toDTO());
 
 				Client admin = new Client();
 				admin.setPhone("222");
-				admin.setPassword("222");//password
+				admin.setPassword("222");
 				admin.setRole(UserRole.ADMIN);
 				clientService.create(admin.toDTO());
 			}

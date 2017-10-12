@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -21,6 +21,11 @@
             <br/>
             <input type="submit" value="Register" />
         </form>
+    </div>
+    <div style="text-align: center; margin-top: 10px">
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            HELLO
+        </div>
     </div>
 </body>
 </html>
