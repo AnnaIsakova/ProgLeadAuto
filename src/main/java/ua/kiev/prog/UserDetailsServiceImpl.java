@@ -21,7 +21,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
         ClientDTO client = clientService.findByPhone(phone);
-        System.out.println("CLIENT loadUserByUsername " + client);
         if (client == null)
             throw new UsernameNotFoundException("User with phone " + phone + " not found");
 

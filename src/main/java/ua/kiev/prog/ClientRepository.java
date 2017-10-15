@@ -18,6 +18,9 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     String findPhone(String phone, long id);
 
     @Override
-    @Query("SELECT c FROM Client c WHERE c.isDeleted = false")
+    @Query("SELECT c FROM Client c WHERE c.isDeleted = false AND c.role <> 'ADMIN'")
     List<Client> findAll();
+
+    @Query("SELECT c FROM Client c WHERE c.isDeleted = false AND c.role = 'USER'")
+    List<Client> findAllClients();
 }

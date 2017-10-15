@@ -3,13 +3,18 @@ package ua.kiev.prog;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -42,9 +47,35 @@ public class ClientController {
 
     @RequestMapping(value = "/clients/all", method = RequestMethod.GET)
     public String getAllClients(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
-        List<ClientDTO> clients = clientService.getAll();
-        model.addAttribute("clients", clients);
-        return "clients_list";
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<ClientDTO> clients;
+        if (user.getAuthorities().contains(
+                new SimpleGrantedAuthority(UserRole.MANAGER.toString()))){
+            clients = clientService.getAllClients();
+            model.addAttribute("clients", clients);
+            return "clients_list_manager";
+        } else {
+            clients = clientService.getAll();
+            int numUsers = 0;
+            int numManagers = 0;
+            for (ClientDTO client:clients) {
+                if (client.getRole() == UserRole.MANAGER){
+                    numManagers++;
+                } else {
+                    numUsers++;
+                }
+            }
+            model.addAttribute("clients", clients);
+            model.addAttribute("numUsers", numUsers);
+            model.addAttribute("numManagers", numManagers);
+//            Map<String, Object> attr = new HashMap<>();
+//            attr.put("clients", clients);
+//            attr.put("numUsers", numUsers);
+//            attr.put("numManagers", numManagers);
+//            model.addAllAttributes()
+            return "clients_list_admin";
+        }
     }
 
     @RequestMapping(value = "admin/clients/edit", method = RequestMethod.GET)

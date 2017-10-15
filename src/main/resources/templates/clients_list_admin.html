@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+    <style>
+        .tabcontent {
+            display: none;
+            width: 100%;
+
+        }
+
+        .tab button.active {
+            background-color: #9ab9cc;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center">
+        <h2>Hello, admin</h2>
+    </div>
+
+    <div style="text-align: center; margin-top: 15px">
+        <h3>All clients</h3>
+        <div class="tab">
+            <button class="tablinks" onclick="showClients(event, 'users')" id="defaultOpen">Clients</button>
+            <button class="tablinks" onclick="showClients(event, 'managers')">Managers</button>
+        </div>
+
+        <div class="tabcontent" id="users">
+            <div th:if="${numUsers} == 0">
+                There are no clients yet
+            </div>
+            <table th:if="${numUsers} > 0" align="center" border="1">
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Surname</td>
+                    <td>Phone</td>
+                    <td>Phone 2</td>
+                    <td>Phone 3</td>
+                    <td>Email</td>
+                    <td>Skype</td>
+                    <td>Facebook</td>
+                    <td>Actions</td>
+                </tr>
+
+                <th:block th:each="client : ${clients}"
+                          th:object="${client}"
+                          th:if="${client.role == T(ua.kiev.prog.UserRole).USER}">
+                    <tr>
+                        <td th:text="${client.id}"></td>
+                        <td th:text="${client.name}"></td>
+                        <td th:text="${client.surname}"></td>
+                        <td th:text="${client.phone}"></td>
+                        <td th:text="${client.phone2}"></td>
+                        <td th:text="${client.phone3}"></td>
+                        <td th:text="${client.email}"></td>
+                        <td th:text="${client.skype}"></td>
+                        <td th:text="${client.facebook}"></td>
+                        <td>
+                            <button name="submit" value="value" class="link-button">
+                                <a th:href="@{/admin/clients/edit(clientId=${client.id})}">
+                                    Edit
+                                </a>
+                            </button>
+                            <form method="POST" th:action="@{/admin/clients/delete(clientId=${client.id})}">
+                                <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
+                            </form>
+                        </td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+
+
+        <div class="tabcontent" id="managers">
+
+            <div th:if="${numManagers} == 0">
+                There are no clients yet
+            </div>
+
+            <table th:if="${numManagers} > 0" align="center" border="1">
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Surname</td>
+                    <td>Phone</td>
+                    <td>Phone 2</td>
+                    <td>Phone 3</td>
+                    <td>Email</td>
+                    <td>Skype</td>
+                    <td>Facebook</td>
+                    <td>Actions</td>
+                </tr>
+
+                <th:block th:each="client : ${clients}"
+                          th:object="${client}"
+                          th:if="${client.role == T(ua.kiev.prog.UserRole).MANAGER}">
+                    <tr>
+                        <td th:text="${client.id}"></td>
+                        <td th:text="${client.name}"></td>
+                        <td th:text="${client.surname}"></td>
+                        <td th:text="${client.phone}"></td>
+                        <td th:text="${client.phone2}"></td>
+                        <td th:text="${client.phone3}"></td>
+                        <td th:text="${client.email}"></td>
+                        <td th:text="${client.skype}"></td>
+                        <td th:text="${client.facebook}"></td>
+                        <td>
+                            <button name="submit" value="value" class="link-button">
+                                <a th:href="@{/admin/clients/edit(clientId=${client.id})}">
+                                    Edit
+                                </a>
+                            </button>
+                            <form method="POST" th:action="@{/admin/clients/delete(clientId=${client.id})}">
+                                <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
+                            </form>
+                        </td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+
+
+    </div>
+
+    <div align="center" style="margin-top: 10px">
+        <button><a href="/register">Register new client</a></button>
+    </div>
+    <div align="center" style="margin-top: 10px">
+        <button><a href="/logout">Log out</a></button>
+    </div>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        function showClients(evt, name) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            console.log(tabcontent.length);
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(name).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.getElementById("defaultOpen").click();
+        //]]>
+    </script>
+
+</body>
+</html>

@@ -26,8 +26,17 @@ public class ClientService {
         List<Client> clients = clientRepository.findAll();
         List<ClientDTO> clientDTOS = new ArrayList<>();
         for (Client client:clients) {
-            if (client.getRole() != UserRole.ADMIN)
-                clientDTOS.add(client.toDTO());
+            clientDTOS.add(client.toDTO());
+        }
+        return clientDTOS;
+    }
+
+    @Transactional
+    public List<ClientDTO> getAllClients(){
+        List<Client> clients = clientRepository.findAllClients();
+        List<ClientDTO> clientDTOS = new ArrayList<>();
+        for (Client client:clients) {
+            clientDTOS.add(client.toDTO());
         }
         return clientDTOS;
     }

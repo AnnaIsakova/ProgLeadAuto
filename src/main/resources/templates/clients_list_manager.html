@@ -6,14 +6,17 @@
 </head>
 <body>
     <div style="text-align: center">
-        <h2>Hello,
-            <span sec:authorize="hasRole('ROLE_ADMIN')">admin</span>
-            <span sec:authorize="hasRole('ROLE_MANAGER')">manager</span>
-        </h2>
+        <h2>Hello, manager</h2>
     </div>
+
     <div style="text-align: center; margin-top: 15px">
         <h3>All clients</h3>
-        <table align="center" border="1px">
+
+        <div th:if="${clients.empty}">
+            There are no clients yet
+        </div>
+
+        <table th:if="${!clients.empty}" align="center" border="1px" id="users">
             <tr>
                 <td>Id</td>
                 <td>Name</td>
@@ -24,8 +27,6 @@
                 <td>Email</td>
                 <td>Skype</td>
                 <td>Facebook</td>
-                <td>Role</td>
-                <td sec:authorize="hasRole('ROLE_ADMIN')">Actions</td>
             </tr>
 
             <th:block th:each="client : ${clients}">
@@ -39,26 +40,17 @@
                     <td th:text="${client.email}"></td>
                     <td th:text="${client.skype}"></td>
                     <td th:text="${client.facebook}"></td>
-                    <td th:text="${client.role}"></td>
-                    <td sec:authorize="hasRole('ROLE_ADMIN')">
-                            <button name="submit" value="value" class="link-button">
-                                <a th:href="@{/admin/clients/edit(clientId=${client.id})}">
-                                    Edit
-                                </a>
-                            </button>
-                        <form method="POST" th:action="@{/admin/clients/delete(clientId=${client.id})}">
-                            <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
-                        </form>
-                    </td>
                 </tr>
             </th:block>
         </table>
     </div>
+
     <div align="center" style="margin-top: 10px">
         <button><a href="/register">Register new client</a></button>
     </div>
     <div align="center" style="margin-top: 10px">
         <button><a href="/logout">Log out</a></button>
     </div>
+
 </body>
 </html>
