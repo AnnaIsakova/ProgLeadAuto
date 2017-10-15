@@ -40,11 +40,11 @@ public class ClientController {
         return "register";
     }
 
-    @RequestMapping(value = "/admin/clients/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/clients/all", method = RequestMethod.GET)
     public String getAllClients(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
         List<ClientDTO> clients = clientService.getAll();
         model.addAttribute("clients", clients);
-        return "admin";
+        return "clients_list";
     }
 
     @RequestMapping(value = "admin/clients/edit", method = RequestMethod.GET)

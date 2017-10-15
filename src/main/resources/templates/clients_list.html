@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
     <div style="text-align: center">
-        <h2>Hello, admin!</h2>
+        <h2>Hello,
+            <span sec:authorize="hasRole('ROLE_ADMIN')">admin</span>
+            <span sec:authorize="hasRole('ROLE_MANAGER')">manager</span>
+        </h2>
     </div>
     <div style="text-align: center; margin-top: 15px">
         <h3>All clients</h3>
@@ -22,7 +25,7 @@
                 <td>Skype</td>
                 <td>Facebook</td>
                 <td>Role</td>
-                <td>Actions</td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">Actions</td>
             </tr>
 
             <th:block th:each="client : ${clients}">
@@ -37,7 +40,7 @@
                     <td th:text="${client.skype}"></td>
                     <td th:text="${client.facebook}"></td>
                     <td th:text="${client.role}"></td>
-                    <td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')">
                             <button name="submit" value="value" class="link-button">
                                 <a th:href="@{/admin/clients/edit(clientId=${client.id})}">
                                     Edit

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
     <div style="text-align: center">
         Index page
     </div>
-    <div style="text-align: center; margin-top: 10px">
+    <div style="text-align: center; margin-top: 10px; margin-bottom: 10px">
         <button><a href="/register">Register new client</a></button>
     </div>
-    <div style="text-align: center; margin-top: 10px">
-        <button><a href="/admin/clients/all">All clients</a></button>
-    </div>
+    <button><a href="/clients/all">All clients</a></button>
     <div style="text-align: center; margin-top: 10px">
         <div sec:authorize="isAuthenticated()">
             <span>sec:authorize="isAuthenticated()" NOT WORKING</span>
             <button><a href="/logout">Log out</a></button>
         </div>
+
     </div>
 </body>
 </html>
