@@ -9,7 +9,7 @@
         Register new client
     </div>
     <div style="text-align: center; margin-top: 10px">
-        <form th:action="@{/register}" th:object="${client}" method="post">
+        <form th:action="@{/clients/create}" th:object="${client}" method="post">
             Name: <input type="text" th:field="*{name}" /><br/>
             Surname: <input type="text" th:field="*{surname}" /><br/>
             Phone 1*: <input type="text" th:field="*{phone}" /><br/>

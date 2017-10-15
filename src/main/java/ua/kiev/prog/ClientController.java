@@ -26,7 +26,7 @@ public class ClientController {
         return "register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/clients/create", method = RequestMethod.POST)
     public String addClient(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
 
         userValidator.setClient(true);
@@ -37,7 +37,7 @@ public class ClientController {
 
         clientDTO.setRole(UserRole.USER);
         clientService.create(clientDTO);
-        return "register";
+        return "redirect:/clients/all";
     }
 
     @RequestMapping(value = "/clients/all", method = RequestMethod.GET)
@@ -71,13 +71,13 @@ public class ClientController {
         }
 
         clientService.edit(clientDTO);
-        return "redirect:/admin/clients/all";
+        return "redirect:/clients/all";
     }
 
     @RequestMapping(value = "/admin/clients/delete")
     public String deleteClient(@RequestParam("clientId") long id){
         clientService.delete(id);
-        return "redirect:/admin/clients/all";
+        return "redirect:/clients/all";
     }
 
 
