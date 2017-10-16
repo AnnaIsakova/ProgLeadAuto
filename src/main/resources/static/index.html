@@ -1,23 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" 
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap-grid.css">
+	<link rel="stylesheet" type="text/css" href="libs/fontAwesome/css/font-awesome.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<title>Main page</title>
 </head>
-<body>
-    <div style="text-align: center">
-        Index page
-    </div>
-    <div style="text-align: center; margin-top: 10px; margin-bottom: 10px">
-        <button><a href="/register">Register new client</a></button><br/><br/>
-        <button><a href="/clients/all">All clients</a></button>
-    </div>
-    <div style="text-align: center; margin-top: 10px">
-        <div sec:authorize="isAuthenticated()">
-            <span>sec:authorize="isAuthenticated()" NOT WORKING</span>
-            <button><a href="/logout">Log out</a></button>
-        </div>
+<body class="bg-image">
 
-    </div>
+<div class="vertical-center">
+
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			<span class="title">Welcome to ProgLeadAuto</span>
+		</div>
+		<div class="d-flex flex-row justify-content-center margin-top-20">
+			<div class="col-2">
+				<a href="/login" class="btn btn-secondary btn-block">Sign In</a>
+			</div>
+			<div class="col-2">
+				<a href="/signup" class="btn btn-secondary btn-block">Sign Up</a>
+			</div>
+		</div>
+	</div>
+
+</div>
 </body>
 </html>

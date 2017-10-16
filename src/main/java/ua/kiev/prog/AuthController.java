@@ -14,19 +14,19 @@ import java.util.List;
 
 @Controller
 @RequestMapping
-public class MainController {
+public class AuthController {
 
     @Autowired
     ClientService clientService;
     @Autowired
     private UserValidator userValidator;
 
-    @RequestMapping(value = "/sign_up", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String getSignUpPage(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
         return "sign_up";
     }
 
-    @RequestMapping(value = { "/sign_up"}, method = RequestMethod.POST)
+    @RequestMapping(value = { "/signup"}, method = RequestMethod.POST)
     public String addClient(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
 
         userValidator.setClient(false);
