@@ -1,27 +1,177 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" 
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap-grid.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/fontAwesome/css/font-awesome.css"/>
+	<link rel="stylesheet" href="../css/styles.css"/>
+	<title>Title</title>
 </head>
-<body>
-    <div style="text-align: center">
-        Sign up as a manager
-    </div>
-    <div style="text-align: center; margin-top: 10px">
-        <form th:action="@{/sign_up}" th:object="${client}" method="post">
-            Name: <input type="text" th:field="*{name}" /><br/>
-            Surname: <input type="text" th:field="*{surname}" /><br/>
-            Phone 1*: <input type="text" th:field="*{phone}" /><br/>
-            Phone 2: <input type="text" th:field="*{phone2}" /><br/>
-            Phone 3: <input type="text" th:field="*{phone3}" /><br/>
-            Email: <input type="text" th:field="*{email}" /><br/>
-            Skype: <input type="text" th:field="*{skype}" /><br/>
-            Facebook: <input type="text" th:field="*{facebook}" /><br/>
-            Password*: <input type="text" th:field="*{password}" /><br/>
-            <br/>
-            <input type="submit" value="Sign up" />
-        </form>
-    </div>
+<body class="bg-light-green color-grey">
+<div class="vertical-center">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="p-2">
+				Please, Sign Up
+			</h2>
+			<form
+					th:action="@{/signup}"
+					th:object="${client}" method="post"
+					class="margin-0-auto form col-md-4  col-sm-6 col-xs-auto p-2"
+					id="signUpForm">
+
+				<div class="form-group" id="phonenumber">
+					<div class="input-group">
+						<input
+								th:field="*{phone}"
+								type="text"
+							    class="form-control"
+							    id="inputPhone1"
+							    name="phone1"
+							    placeholder="Main phone"
+							    required="required"/>
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="button" id="btnAddPhone">
+								<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							</button>
+  						</span>
+					</div>
+					<small id="phoneHelpInline" class="form-text text-muted">
+						This phone will be used as a login
+					</small>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input
+								th:field="*{password}"
+								type="password"
+							    class="form-control"
+							    id="inputPassword1"
+							    placeholder="Password"
+							    name="password"
+							    required="required"/>
+						<span class="input-group-addon">
+							<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+						</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<input type="password"
+							   class="form-control"
+							   id="inputPassword2"
+							   placeholder="Confirm password"
+							   name="confirmPassword"
+							   required="required"/>
+						<span class="input-group-addon">
+							<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+						</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input
+								th:field="*{name}"
+								type="text"
+							    class="form-control"
+							    id="inputFirstName"
+							    name="firstName"
+							    placeholder="First name"/>
+						<span class="input-group-addon">
+	            	 	<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+	            	 	</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<input
+								th:field="*{surname}"
+							    type="text"
+							    class="form-control"
+							    name="lastName"
+							    id="inputLastName"
+							    placeholder="Last name"/>
+						<span class="input-group-addon">
+	            		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+	            		</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input
+								th:field="*{email}"
+								type="email"
+							    class="form-control"
+							    id="inputEmail"
+							    placeholder="Email"
+							    name="email"/>
+						<span class="input-group-addon">
+				    		<i class="fa fa-envelope" aria-hidden="true"></i>
+				    	</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input
+								th:field="*{skype}"
+								type="text"
+							    class="form-control"
+							    id="inputSkype"
+							    name="skype"
+							    placeholder="Skype"/>
+						<span class="input-group-addon">
+			    			<i class="fa fa-skype" aria-hidden="true"></i>
+			    		</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input
+								th:field="*{facebook}"
+								type="text"
+							    class="form-control"
+							    id="inputFacebook"
+							    name="facebook"
+							    placeholder="Facebook"/>
+						<span class="input-group-addon">
+			    			<i class="fa fa-facebook-square" aria-hidden="true"></i>
+			    		</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<button type="submit"
+							class="btn btn-secondary btn-block"
+							id="signUp">
+						Sign Up
+					</button>
+				</div>
+
+				<div th:if="${param.error != null}"
+					 class="alert alert-danger">
+					<strong>Oops! </strong>Something went wrong :(<br/>
+					Please, try again later.
+				</div>
+			</form>
+			<div class="signup-login-page">
+				<small>
+					Or <a href="/login">Sign In</a> if you are already registered.
+				</small>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<script src="../libs/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>

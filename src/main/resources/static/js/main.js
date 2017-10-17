@@ -9,7 +9,13 @@ btnAddPhone.addEventListener("click", function() {
 	len++;
 	var div = document.createElement('div');
 	div.className = "form-group";
-	div.innerHTML = `<input type='text' class='form-control' id='inputPhone${len}' name='phone${len}' placeholder='Phone ${len}'>`;
+	div.innerHTML =
+		`<div class="input-group">
+			<input th:field="*{phone${len}}" type='text' class='form-control' id='inputPhone${len}' name='phone${len}' placeholder='Phone ${len}'>
+			<span class="input-group-addon">
+				<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+			</span>
+		</div>`;
 	phoneNumber.appendChild(div);
 }, false);
 
@@ -22,8 +28,8 @@ confirmPsw.addEventListener("keyup", validatePasswords);
 function validatePasswords() {
 
 	if (psw.value != confirmPsw.value) {
-		confirmPsw.setCustomValidity('The password and its confirm are not the same');
+		confirmPsw.setCustomValidity('This field should match the password');
 	} else {
 		confirmPsw.setCustomValidity('');
 	}
-}	
+}

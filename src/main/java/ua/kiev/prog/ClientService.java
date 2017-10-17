@@ -17,7 +17,7 @@ public class ClientService {
     @Transactional(readOnly = true)
     public ClientDTO findByPhone(String phone) {
         Client client = clientRepository.findByPhone(phone);
-        if (client == null) throw new RuntimeException("Client you're trying to edit does not exist");
+        if (client == null) throw new RuntimeException("Client you're trying to find does not exist");
         return client.toDTO();
     }
 

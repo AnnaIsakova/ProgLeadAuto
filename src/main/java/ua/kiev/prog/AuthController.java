@@ -29,6 +29,8 @@ public class AuthController {
     @RequestMapping(value = { "/signup"}, method = RequestMethod.POST)
     public String addClient(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
 
+        System.out.println(clientDTO);
+
         userValidator.setClient(false);
         userValidator.validate(clientDTO, bindingResult);
         if (bindingResult.hasErrors()){
