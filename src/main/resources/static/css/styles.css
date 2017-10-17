@@ -20,7 +20,23 @@ html {
     background-size: cover;
 }
 
+.bg-light-green{
+    background-color: #e8fff2;
+}
+
+.color-grey{
+    color: #38536b;
+}
+
+.margin-0-auto{
+    margin: 0 auto;
+}
+
+.signup-login-page{
+    margin-top: -10px;
+}
+
 .title{
     font-size: 45px;
-    color: #6c757d;
+    color: #38536b;
 }

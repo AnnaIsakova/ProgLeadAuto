@@ -1,25 +1,76 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" 
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap-grid.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/fontAwesome/css/font-awesome.css"/>
+	<link rel="stylesheet" href="../css/styles.css"/>
+	<title>Title</title>
 </head>
-<body>
-<div style="text-align: center">
-    Please, log in
+<body class="bg-light-green color-grey">
+<div class="vertical-center">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="p-2">
+				Please, Sign in
+			</h2>
+			<form
+					th:action="@{/j_spring_security_check}"
+					method="POST"
+					class="margin-0-auto form col-md-4 col-sm-6 col-xs-auto p-2"
+					id="signInForm">
+				<div class="form-group" id="phonenumber">
+					<div class="input-group">
+						<input type="text"
+							   class="form-control"
+							   id="j_login"
+							   name="j_login"
+							   placeholder="Phone"
+							   required="required"/>
+						<span class="input-group-addon">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+						</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input type="password"
+							   class="form-control"
+							   id="j_password"
+							   placeholder="Password"
+							   name="j_password"
+							   required="required"/>
+						<span class="input-group-addon">
+							<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+						</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit"
+							class="btn btn-secondary btn-block"
+							id="signIn">
+						Sign In
+					</button>
+
+				</div>
+				<div th:if="${param.error != null}"
+					 class="alert alert-danger">
+					Wrong login or password :(
+				</div>
+			</form>
+			<div class="signup-login-page">
+				<small>
+					Or <a href="/signup">Sign Up</a> if you are not registered.
+				</small>
+			</div>
+		</div>
+	</div>
 </div>
-<div style="text-align: center; margin-top: 10px">
-    <form th:action="@{/j_spring_security_check}" method="post">
-        <label for="j_login">Username</label>:
-        <input type="text" id="j_login" name="j_login" autofocus="autofocus" /> <br />
-        <label for="j_password">Password</label>:
-        <input type="password" id="j_password" name="j_password" /> <br />
-        <input type="submit" value="Log in" />
-    </form>
-    <span th:if="${param.error != null}"
-          th:text="${'wrong login or pass'}"><br/>
-    </span>
-    <a href="/sign_up">Sign up</a>
-</div>
+	<script src="../libs/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private SimpleAuthenticationSuccessHandler successHandler;
 
     @Bean
     public ShaPasswordEncoder passwordEncoder() {
@@ -40,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/unauthorized")
                 .and()
         .formLogin()
+                .successHandler(successHandler)
                 .loginPage("/login")
                 .loginProcessingUrl("/j_spring_security_check")
                 .failureUrl("/login?error")
