@@ -11,7 +11,12 @@ btnAddPhone.addEventListener("click", function() {
 	div.className = "form-group";
 	div.innerHTML =
 		`<div class="input-group">
-			<input th:field="*{phone${len}}" type='text' class='form-control' id='inputPhone${len}' name='phone${len}' placeholder='Phone ${len}'>
+			<input 
+			th:field="*{phone${len}}" 
+			type='text' class='form-control' 
+			id='inputPhone${len}' 
+			name='phone${len}' 
+			placeholder='Phone ${len}'>
 			<span class="input-group-addon">
 				<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
 			</span>

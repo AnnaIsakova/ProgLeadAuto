@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
     <div style="text-align: center">
-        Sign up as a manager
+        Register new client
     </div>
     <div style="text-align: center; margin-top: 10px">
-        <form th:action="@{/sign_up}" th:object="${client}" method="post">
+        <form th:action="@{/clients/create}" th:object="${client}" method="post">
             Name: <input type="text" th:field="*{name}" /><br/>
             Surname: <input type="text" th:field="*{surname}" /><br/>
             Phone 1*: <input type="text" th:field="*{phone}" /><br/>
@@ -18,10 +18,17 @@
             Email: <input type="text" th:field="*{email}" /><br/>
             Skype: <input type="text" th:field="*{skype}" /><br/>
             Facebook: <input type="text" th:field="*{facebook}" /><br/>
-            Password*: <input type="text" th:field="*{password}" /><br/>
             <br/>
-            <input type="submit" value="Sign up" />
+            <input type="submit" value="Register" />
         </form>
+    </div>
+    <div align="center" style="text-align: center; margin-top: 10px">
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <button><a href="/admin/clients/all">All clients</a></button>
+        </div>
+    </div>
+    <div align="center" style="margin-top: 10px">
+        <button><a href="/logout">Log out</a></button>
     </div>
 </body>
 </html>

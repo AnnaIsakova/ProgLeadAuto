@@ -26,7 +26,7 @@ public class ClientController {
     private UserValidator userValidator;
 
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/clients/create", method = RequestMethod.GET)
     public String getRegisterPage(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
         return "register";
     }
@@ -69,11 +69,6 @@ public class ClientController {
             model.addAttribute("clients", clients);
             model.addAttribute("numUsers", numUsers);
             model.addAttribute("numManagers", numManagers);
-//            Map<String, Object> attr = new HashMap<>();
-//            attr.put("clients", clients);
-//            attr.put("numUsers", numUsers);
-//            attr.put("numManagers", numManagers);
-//            model.addAllAttributes()
             return "clients_list_admin";
         }
     }

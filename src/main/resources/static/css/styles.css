@@ -21,11 +21,15 @@ html {
 }
 
 .bg-light-green{
-    background-color: #e8fff2;
+    background-color: #f0f2f5;
 }
 
 .color-grey{
     color: #38536b;
+}
+
+.color-grey1{
+   color: #40454a;
 }
 
 .margin-0-auto{
@@ -39,4 +43,197 @@ html {
 .title{
     font-size: 45px;
     color: #38536b;
+}
+
+.number_bar-center {
+    position: absolute;
+    bottom: 15px;
+    right: auto;
+    transform: translate(-50%);
+    left: 50%;
+}
+
+/* кнопка значек edit */
+.edit-btn:visited, .edit-btn:link, .edit-btn:active {
+    text-decoration: none;
+}
+.edit-btn:hover::after {
+    color: #f28a8b;
+}
+.edit-btn {
+    color: black;
+}
+.edit-btn::after {
+    content: "\f040";
+    color: #616161;
+    font-size: 20px;
+    font-family: "FontAwesome";
+    padding-left: 2px;
+    text-decoration: none;
+}
+/* кнопка значек delete */
+.del-btn:visited, .del-btn:link, .del-btn:active {
+    text-decoration: none;
+}
+.del-btn:hover::after {
+    color: #f28a8b;
+}
+.del-btn::after {
+    content: "\f014";
+    color: #616161;
+    font-size: 20px;
+    font-family: "FontAwesome";
+    padding-left: 12px;
+}
+
+/* Нав Бар */
+.navbar_01 {
+    background-color: #009587;
+    padding: 10px;
+    color: white;
+    clear: both;
+    width: 100%;
+    float: none;
+    margin-bottom: 25px;
+}
+.nav-left {
+    font-size: 20px;
+    float: left;
+}
+.nav-right {
+    font-size: 20px;
+    float: right;
+}
+.nav-right::after {
+    content: "\f0d7";
+    font-family: "FontAwesome";
+    padding-left: 5px;
+}
+.clear_both {
+    clear: both;
+}
+
+
+/* надпись Account */
+.acc_block_01 {
+    margin: 0;
+}
+.acc_block_02, .acc_block_03 {
+    width: 50%;
+    float: left;
+}
+
+/* ТАБЫ */
+.tabs {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab_01, .tab_02 {
+    float: left;
+    height: 40px;
+    width: 120px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.tab_01{
+    border-top: 1px solid #b92c28;
+    border-right: 1px solid #b92c28;
+    border-left: 1px solid #b92c28;
+}
+
+.tab_01:active{
+    border-bottom: 2px solid #f0f2f5;
+}
+
+.tab_02 {
+    border-top: 1px solid #b92c28;
+    border-right: 1px solid #b92c28;
+}
+
+.tab_01:active{
+    border-bottom: 2px solid #f0f2f5;
+}
+
+
+/* ПАГИНАЦИЯ */
+.page-link {
+    color: #404040;
+}
+
+.fl-r{
+    float: right;
+}
+
+.p-top-15{
+    padding-top: 15px;
+}
+
+.tab > h4 > span:active {
+    color: #9ab9cc;
+}
+
+.tab > h4 > span:hover{
+    color: #bd2130;
+}
+
+.m-top-40{
+    margin-top: 40px;
+}
+
+.m-bot-15{
+    margin-bottom: 15px;
+}
+
+.btn-yellow{
+    color: #ffffff;
+    background-color: #f2994b;
+    border-color: #f19441;
+}
+
+.btn-yellow:hover{
+    color: #ffffff;
+    background-color: #ef8325;
+    border-color: #e57411;
+}
+
+.btn-yellow:active{
+    color: #ffffff;
+    background-color: #ef8325;
+    border-color: #e57411;
+}
+
+.btn-red{
+    color: #ffffff;
+    background-color: #d9534f;
+    border-color: #d74b47;
+}
+
+.btn-red:hover{
+    color: #ffffff;
+    background-color: #d2322d;
+    border-color: #b92c28;
+}
+
+.btn-red:active{
+    color: #ffffff;
+    background-color: #d2322d;
+    border-color: #b92c28;
+}
+
+.btn-dark-green {
+    background-color: #00a999;
+    color: #fff;
+    border-color: #00a999;
+}
+
+.btn-dark-green:hover {
+     background-color:#009a8b;
+    color: #fff;
+}
+
+.btn-dark-green:focus {
+    box-shadow: 0 0 0 2px rgba(0, 149, 135, 0.5);
+    color: #fff;
 }
