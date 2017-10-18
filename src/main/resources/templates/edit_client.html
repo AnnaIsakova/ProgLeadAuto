@@ -15,61 +15,59 @@
 	<div class="container">
 		<div class="text-center">
 			<h2 class="p-2">
-				Please, Sign Up
+				Editing Client
 			</h2>
 			<form
-					th:action="@{/signup}"
-					th:object="${client}" method="post"
+					th:action="@{/admin/clients/edit}"
+					th:object="${client}"
+					method="POST"
 					class="margin-0-auto form col-md-4  col-sm-6 col-xs-auto p-2"
 					id="signUpForm">
 
-				<div class="form-group" id="phonenumber">
-					<div class="input-group m-bot-15">
+				<input type="hidden" th:field="*{id}"/>
+				<div class="form-group">
+					<div class="input-group">
 						<input
 								th:field="*{phone}"
 								type="text"
 							    class="form-control"
-							    id="inputPhone1"
-							    name="phone1"
-							    placeholder="Main phone (will be used as login)"
+							    id="phone"
+							    placeholder="Main phone"
+							    name="phone"
 							    required="required"/>
-						<span class="input-group-btn">
-							<button class="btn btn-secondary" type="button" id="btnAddPhone">
-								<i class="fa fa-plus-circle" aria-hidden="true"></i>
-							</button>
-  						</span>
+						<span class="input-group-addon">
+							<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+						</span>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<div class="input-group">
 						<input
-								th:field="*{password}"
-								type="password"
-							    class="form-control"
-							    id="inputPassword1"
-							    placeholder="Password"
-							    name="password"
-							    required="required"/>
+								th:field="*{phone2}"
+								type="text"
+								class="form-control"
+								id="phone2"
+								placeholder="Phone 2"
+								name="phone2"/>
 						<span class="input-group-addon">
-							<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+							<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
 						</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
-						<input type="password"
-							   class="form-control"
-							   id="inputPassword2"
-							   placeholder="Confirm password"
-							   name="confirmPassword"
-							   required="required"/>
+						<input
+								th:field="*{phone3}"
+								type="text"
+								class="form-control"
+								id="phone3"
+								placeholder="Phone 3"
+								name="phone3"/>
 						<span class="input-group-addon">
-							<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+							<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
 						</span>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<div class="input-group">
 						<input
@@ -147,9 +145,15 @@
 				<div class="form-group">
 					<button type="submit"
 							class="btn btn-dark-green btn-block"
-							id="signUp">
-						Sign Up
+							id="edit">
+						Save changes
 					</button>
+					<a
+							href="/clients/all"
+							class="btn btn-secondary btn-block"
+							id="cancel">
+						Cancel
+					</a>
 				</div>
 
 				<div th:if="${param.error != null}"
@@ -158,11 +162,6 @@
 					Please, try again later.
 				</div>
 			</form>
-			<div class="signup-login-page">
-				<small>
-					Or <a href="/login">Sign In</a> if you are already registered.
-				</small>
-			</div>
 		</div>
 	</div>
 </div>
