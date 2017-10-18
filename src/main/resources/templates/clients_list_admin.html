@@ -34,19 +34,7 @@
 	  </div>
 	</div>
 
-	<div class="navbar_01">
-		<div class="container">
-			<div class="nav-left">Prog.LeadAuto</div>
-			<div class="nav-right">
-				<button onclick="dropUserBtn()" class="username-btn">User Name</button>
-  				<div id="myDropdown" class="dropdown-content">
-    			<a href="#">Profile</a>
-    			<a href="/logout">Log Out</a>
-  				</div>
-			</div>
-			<div class="clear_both"></div>
-		</div>
-	</div>
+	<div th:replace="navbar :: navbar"></div>
 
 	<div class="container">
 		<h4 class="text-uppercase allusers_01">
