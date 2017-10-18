@@ -15,6 +15,18 @@ html {
     margin-top: 20px;
 }
 
+.m-bot-15{
+    margin-bottom: 15px;
+}
+
+.m-bot-10{
+    margin-bottom: 10px;
+}
+
+.m-rig-5{
+    margin-right: 5px;
+}
+
 .bg-image{
     background-image: url("bg-img.jpg");
     background-size: cover;
@@ -36,6 +48,10 @@ html {
     margin: 0 auto;
 }
 
+.f-l{
+    float: left;
+}
+
 .signup-login-page{
     margin-top: -10px;
 }
@@ -53,39 +69,6 @@ html {
     left: 50%;
 }
 
-/* кнопка значек edit */
-.edit-btn:visited, .edit-btn:link, .edit-btn:active {
-    text-decoration: none;
-}
-.edit-btn:hover::after {
-    color: #f28a8b;
-}
-.edit-btn {
-    color: black;
-}
-.edit-btn::after {
-    content: "\f040";
-    color: #616161;
-    font-size: 20px;
-    font-family: "FontAwesome";
-    padding-left: 2px;
-    text-decoration: none;
-}
-/* кнопка значек delete */
-.del-btn:visited, .del-btn:link, .del-btn:active {
-    text-decoration: none;
-}
-.del-btn:hover::after {
-    color: #f28a8b;
-}
-.del-btn::after {
-    content: "\f014";
-    color: #616161;
-    font-size: 20px;
-    font-family: "FontAwesome";
-    padding-left: 12px;
-}
-
 /* Нав Бар */
 .navbar_01 {
     background-color: #009587;
@@ -101,16 +84,50 @@ html {
     float: left;
 }
 .nav-right {
-    font-size: 20px;
     float: right;
+    position: relative;
+   display: inline-block;
 }
-.nav-right::after {
+.username-btn, .username-btn:focus {
+    font-size: 20px;
+    background-color: Transparent;
+   background-repeat:no-repeat;
+   border: none;
+   cursor:pointer;
+   overflow: hidden;
+   outline:none;
+   color: white;
+}
+.username-btn::after {
     content: "\f0d7";
     font-family: "FontAwesome";
     padding-left: 5px;
 }
 .clear_both {
     clear: both;
+}
+/* Drop Down User Name */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    margin-left: -3px;
+    min-width: 140px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: #40454a;
+    padding: 4px 12px;
+    text-decoration: none;
+    display: block;
+}
+.nav-right a:hover {
+    background-color: #f1f1f1
+}
+.show {
+    display:block;
 }
 
 
@@ -129,34 +146,6 @@ html {
     margin-bottom: 20px;
 }
 
-.tab_01, .tab_02 {
-    float: left;
-    height: 40px;
-    width: 120px;
-    color: #ffffff;
-    text-align: center;
-}
-
-.tab_01{
-    border-top: 1px solid #b92c28;
-    border-right: 1px solid #b92c28;
-    border-left: 1px solid #b92c28;
-}
-
-.tab_01:active{
-    border-bottom: 2px solid #f0f2f5;
-}
-
-.tab_02 {
-    border-top: 1px solid #b92c28;
-    border-right: 1px solid #b92c28;
-}
-
-.tab_01:active{
-    border-bottom: 2px solid #f0f2f5;
-}
-
-
 /* ПАГИНАЦИЯ */
 .page-link {
     color: #404040;
@@ -170,20 +159,8 @@ html {
     padding-top: 15px;
 }
 
-.tab > h4 > span:active {
-    color: #9ab9cc;
-}
-
-.tab > h4 > span:hover{
-    color: #bd2130;
-}
-
 .m-top-40{
     margin-top: 40px;
-}
-
-.m-bot-15{
-    margin-bottom: 15px;
 }
 
 .btn-yellow{
@@ -204,6 +181,10 @@ html {
     border-color: #e57411;
 }
 
+.btn-yellow:focus{
+    box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.25);
+}
+
 .btn-red{
     color: #ffffff;
     background-color: #d9534f;
@@ -222,6 +203,10 @@ html {
     border-color: #b92c28;
 }
 
+.btn-red:focus{
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.25);
+}
+
 .btn-dark-green {
     background-color: #00a999;
     color: #fff;
@@ -236,4 +221,52 @@ html {
 .btn-dark-green:focus {
     box-shadow: 0 0 0 2px rgba(0, 149, 135, 0.5);
     color: #fff;
+}
+
+
+/* ALL USERS */
+.allusers_01 {
+    display: inline-block;
+    float: left;
+}
+.clients-managers {
+    margin-top: 5px;
+    display: inline-block;
+    float: right;
+}
+
+.clients-managers > div:active{
+    color: #009587;
+}
+
+
+.tabcontent {
+    display: none;
+    width: 100%;
+
+}
+
+.breadcrumb_01 {
+    display: inline-block;
+    min-width: 1px;
+    width: 1px;
+    height: 20px;
+    min-height: 10px;
+    background-color: #909090;
+    margin: 5px 0 -2px;
+}
+
+.tablinks1 {
+    margin: 5px;
+    background: none !important;
+    color: inherit;
+    border: none;
+    padding: 0! important;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit !important;
+}
+
+.tab button.active {
+    color: #009587;
 }
