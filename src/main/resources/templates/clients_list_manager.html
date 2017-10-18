@@ -1,56 +1,125 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" 
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../libs/bootstrap/css/bootstrap-grid.css"/>
+	<link rel="stylesheet" type="text/css" href="../libs/fontAwesome/css/font-awesome.css"/>
+	<link rel="stylesheet" href="../css/styles.css"/>
+	<title>Accounts</title>
 </head>
-<body>
-    <div style="text-align: center">
-        <h2>Hello, manager</h2>
-    </div>
+<body class="bg-light-green color-grey1">
 
-    <div style="text-align: center; margin-top: 15px">
-        <h3>All clients</h3>
 
-        <div th:if="${clients.empty}">
-            There are no clients yet
-        </div>
+	<div class="navbar_01">
+		<div class="container">
+			<div class="nav-left">Prog.LeadAuto</div>
+			<div class="nav-right">
+				<button onclick="dropUserBtn()" class="username-btn">User Name</button>
+  				<div id="myDropdown" class="dropdown-content">
+    			<a href="#">Profile</a>
+    			<a href="/logout">Log Out</a>
+  				</div>
+			</div>
+			<div class="clear_both"></div>
+		</div>
+	</div>
 
-        <table th:if="${!clients.empty}" align="center" border="1px" id="users">
-            <tr>
-                <td>Id</td>
-                <td>Name</td>
-                <td>Surname</td>
-                <td>Phone</td>
-                <td>Phone 2</td>
-                <td>Phone 3</td>
-                <td>Email</td>
-                <td>Skype</td>
-                <td>Facebook</td>
-            </tr>
+	<div class="container">
+		<h4 class="text-uppercase">
+			All Clients
+		</h4>
+	</div>
 
-            <th:block th:each="client : ${clients}">
-                <tr>
-                    <td th:text="${client.id}"></td>
-                    <td th:text="${client.name}"></td>
-                    <td th:text="${client.surname}"></td>
-                    <td th:text="${client.phone}"></td>
-                    <td th:text="${client.phone2}"></td>
-                    <td th:text="${client.phone3}"></td>
-                    <td th:text="${client.email}"></td>
-                    <td th:text="${client.skype}"></td>
-                    <td th:text="${client.facebook}"></td>
-                </tr>
-            </th:block>
-        </table>
-    </div>
+	<div class="container tabs">
+	</div>
+	
+	<div class="container">
+		<div>
+			<div th:if="${clients.empty}">
+				<div class="m-bot-10">There are no clients yet</div>
+				<a class="btn btn-success" href="/clients/create">Add new client</a>
+			</div>
+			<div th:if="${!clients.empty}">
+				<table class="table table-sm table-responsive">
+					<thead>
+						<tr class="table-light table-bg">
+							<th>#</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Phones</th>
+							<th>Email</th>
+							<th>Skype</th>
+							<th>Facebook</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="client : ${clients}"
+								  th:object="${client}"
+								  th:if="${client.role == T(ua.kiev.prog.UserRole).USER}"
+								  >
+							<tr class="table-light">
+								<th th:text="${client.id}"></th>
+								<td th:text="${client.name}"></td>
+								<td th:text="${client.surname}"></td>
+								<td>
+									<ul class="list-group">
+										<li class="list-group-item border-0 p-0" th:text="${client.phone}"></li>
+										<li class="list-group-item border-0 p-0" th:text="${client.phone2}"></li>
+										<li class="list-group-item border-0 p-0" th:text="${client.phone3}"></li>
+									</ul>
+								</td>
+								<td th:text="${client.email}"></td>
+								<td th:text="${client.skype}"></td>
+								<td th:text="${client.facebook}"></td>
+								<td>
+									<a class="btn btn-yellow f-l m-rig-5" th:href="@{/admin/clients/edit(clientId=${client.id})}">
+										Edit
+									</a>
+									<form class="f-l" method="POST" th:action="@{/admin/clients/delete(clientId=${client.id})}">
+										<button type="submit" class="btn btn-red">Delete</button>
+									</form>
+								</td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+				<a class="btn btn-success fl-r" href="/clients/create">Add new client</a>
+			</div>
+		</div>
 
-    <div align="center" style="margin-top: 10px">
-        <button><a href="/register">Register new client</a></button>
-    </div>
-    <div align="center" style="margin-top: 10px">
-        <button><a href="/logout">Log out</a></button>
-    </div>
+	</div>
+
+	<script src="../libs/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../libs/popper/popper.min.js"></script>
+	<script src="../libs/bootstrap/js/bootstrap.js"></script>
+	<script src="../js/main.js"></script>
+	<script type="text/javascript">
+      //<![CDATA[
+      // Drop Down Menu
+      function dropUserBtn() {
+          document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function(event) {
+          if (!event.target.matches('.username-btn')) {
+
+              var dropdowns = document.getElementsByClassName("dropdown-content");
+              var i;
+              for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                      openDropdown.classList.remove('show');
+                  }
+              }
+          }
+      }
+      //]]>
+   </script>
 
 </body>
 </html>
