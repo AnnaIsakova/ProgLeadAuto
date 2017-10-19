@@ -3,6 +3,8 @@ package ua.kiev.prog;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -71,6 +73,16 @@ public class ClientController {
             model.addAttribute("numManagers", numManagers);
             return "clients_list_admin";
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ClientDTO> getClient(@PathVariable("id") long id,
+                                               @ModelAttribute("client") ClientDTO clientDTO,
+                                               BindingResult bindingResult){
+        clientDTO = clientService.getById(id);
+        if (clientDTO == null) return new ResponseEntity<ClientDTO>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<ClientDTO>(clientDTO, HttpStatus.OK);
     }
 
     @RequestMapping(value = "admin/clients/edit", method = RequestMethod.GET)

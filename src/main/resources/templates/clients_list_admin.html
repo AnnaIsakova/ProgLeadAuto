@@ -12,7 +12,7 @@
 </head>
 <body class="bg-light-green color-grey1">
 
-	<div class="modal fade" id="deleteUser" tabindex="-1">
+	<div class="modal fade" id="deleteUserModal" tabindex="-1">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -21,11 +21,11 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <div class="modal-body">
-	        <p>Are you sure you want to delete the user?</p>
+	      <div class="modal-body" id="deleteUserModalHolder">
+			  <p>Are you sure you want to delete user with phone <span id="clientPhone"></span>?</p>
 	      </div>
 	      <div class="modal-footer">
-			  <form method="POST" th:action="@{/admin/clients/delete(clientId=${client.id})}">
+			  <form id="deleteClientForm" method="POST">
 				  <button type="submit" class="btn btn-red">Delete</button>
 			  </form>
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -94,12 +94,10 @@
 								<td th:text="${client.skype}"></td>
 								<td th:text="${client.facebook}"></td>
 								<td>
-									<a class="btn btn-yellow f-l m-rig-5" th:href="@{/admin/clients/edit(clientId=${client.id})}">
+									<a class="btn btn-yellow" th:href="@{/admin/clients/edit(clientId=${client.id})}">
 										Edit
 									</a>
-									<form class="f-l" method="POST" th:action="@{/admin/clients/delete(clientId=${client.id})}">
-										<button type="submit" class="btn btn-red">Delete</button>
-									</form>
+									<button th:onclick="'javascript:openDeletingModal(\'' + ${client.id} + '\');'" class="btn btn-red">Delete</button>
 								</td>
 							</tr>
 						</th:block>
@@ -172,12 +170,10 @@
 							<td th:text="${client.skype}"></td>
 							<td th:text="${client.facebook}"></td>
 							<td>
-								<a class="btn btn-yellow f-l m-rig-5" th:href="@{/admin/clients/edit(clientId=${client.id})}">
+								<a class="btn btn-yellow" th:href="@{/admin/clients/edit(clientId=${client.id})}">
 									Edit
 								</a>
-								<form class="f-l" method="POST" th:action="@{/admin/clients/delete(clientId=${client.id})}">
-									<button type="submit" class="btn btn-red">Delete</button>
-								</form>
+								<button th:onclick="'javascript:openDeletingModal(\'' + ${client.id} + '\');'" class="btn btn-red">Delete</button>
 							</td>
 						</tr>
 					</th:block>
@@ -235,6 +231,19 @@
       evt.currentTarget.className += " active";
       }
       document.getElementById("defaultOpen").click();
+
+      function openDeletingModal(id) {
+		  $.ajax({
+			  url: '/clients/' + id,
+			  success: function (data) {
+			    var  client = {client: data};
+				console.log({client: data});
+				$('#clientPhone').html(data.phone);
+				$('#deleteClientForm').attr('action', '/admin/clients/delete?clientId=' + data.id);
+				$("#deleteUserModal").modal("show");
+              }
+		  })
+      }
       //]]>
    </script>
 
