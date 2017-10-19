@@ -28,7 +28,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         roles.add(new SimpleGrantedAuthority(client.getRole().toString()));
 
         User user = new User(client.getPhone(), client.getPassword(), roles);
-        System.out.println(user);
         return user;
     }
 }
