@@ -270,3 +270,35 @@ html {
 .tab button.active {
     color: #009587;
 }
+
+/* Pagination + Add New User Button */
+.pagination_panel {
+    display: flex;
+    height: 60px;
+
+}
+.empty-block-01 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.navigation-num {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+}
+.btn-newclient {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+}
+.btn-newclient_style {
+    height: 38px;
+    margin-top: -3px;
+    margin-bottom: auto;
+    align-self: center;
+}

@@ -105,7 +105,33 @@
 						</th:block>
 					</tbody>
 				</table>
-				<a class="btn btn-success fl-r" href="/clients/create">Add new client</a>
+				<div class="pagination_panel">
+					<div class="empty-block-01"></div>
+					<div class="navigation-num">
+						<nav aria-label="Page navigation" class="p-2">
+							<ul class="pagination mb-0 justify-content-center">
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+									</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="btn-newclient">
+						<a class="btn btn-success fl-r" href="/clients/create">Add new client</a>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -157,6 +183,29 @@
 					</th:block>
 					</tbody>
 				</table>
+				<div class="pagination_panel">
+					<div class="navigation-num">
+						<nav aria-label="Page navigation" class="p-2">
+							<ul class="pagination mb-0 justify-content-center">
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+									</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -186,26 +235,6 @@
       evt.currentTarget.className += " active";
       }
       document.getElementById("defaultOpen").click();
-
-      // Drop Down Menu
-      function dropUserBtn() {
-          document.getElementById("myDropdown").classList.toggle("show");
-      }
-
-      // Close the dropdown if the user clicks outside of it
-      window.onclick = function(event) {
-          if (!event.target.matches('.username-btn')) {
-
-              var dropdowns = document.getElementsByClassName("dropdown-content");
-              var i;
-              for (i = 0; i < dropdowns.length; i++) {
-                  var openDropdown = dropdowns[i];
-                  if (openDropdown.classList.contains('show')) {
-                      openDropdown.classList.remove('show');
-                  }
-              }
-          }
-      }
       //]]>
    </script>
 
