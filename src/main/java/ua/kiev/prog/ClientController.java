@@ -50,12 +50,14 @@ public class ClientController {
     @RequestMapping(value = "/clients/all", method = RequestMethod.GET)
     public String getAllClients(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        addNameToModel(user, model);
 
         List<ClientDTO> clients;
         if (user.getAuthorities().contains(
                 new SimpleGrantedAuthority(UserRole.MANAGER.toString()))){
             clients = clientService.getAllClients();
             model.addAttribute("clients", clients);
+            model.addAttribute("role", "Manager");
             return "clients_list_manager";
         } else {
             clients = clientService.getAll();
@@ -71,6 +73,7 @@ public class ClientController {
             model.addAttribute("clients", clients);
             model.addAttribute("numUsers", numUsers);
             model.addAttribute("numManagers", numManagers);
+            model.addAttribute("role", "Admin");
             return "clients_list_admin";
         }
     }
@@ -123,5 +126,13 @@ public class ClientController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+    }
+
+    private void addNameToModel(User user, Model model){
+        ClientDTO loggedInUser = clientService.findByPhone(user.getUsername());
+        String name = loggedInUser.getName();
+        String surname = loggedInUser.getSurname();
+        model.addAttribute("name", name);
+        model.addAttribute("surname", surname);
     }
 }

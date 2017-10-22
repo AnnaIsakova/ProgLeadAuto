@@ -9,7 +9,12 @@
         <div class="container">
             <div class="nav-left">Prog.LeadAuto</div>
             <div class="nav-right">
-                <button onclick="dropUserBtn()" class="username-btn">User Name</button>
+                <button onclick="dropUserBtn()" class="username-btn">
+                    <span th:if="${name != null and surname != null}"
+                          th:text="${name} + ' ' + ${surname}"></span>
+                    <span th:if="${name == null or surname == null}"
+                          th:text="${role}"></span>
+                </button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="#">Profile</a>
                     <a href="/logout">Log Out</a>
