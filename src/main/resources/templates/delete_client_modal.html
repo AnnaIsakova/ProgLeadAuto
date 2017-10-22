@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" th:fragment="deleteUserModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm deleting</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete user with phone <span th:text="${client.phone}"></span>?</p>
+                </div>
+                <div class="modal-footer">
+                    <form id="deleteClientForm" th:action="@{/admin/clients/delete(clientId=${client.id})}" method="POST">
+                        <button type="submit" class="btn btn-red">Delete</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

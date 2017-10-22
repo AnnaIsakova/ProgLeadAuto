@@ -75,14 +75,24 @@ public class ClientController {
         }
     }
 
-    @ResponseBody
+//    @ResponseBody
+//    @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
+//    public ResponseEntity<ClientDTO> getClient(@PathVariable("id") long id,
+//                                               @ModelAttribute("client") ClientDTO clientDTO,
+//                                               BindingResult bindingResult){
+//        clientDTO = clientService.getById(id);
+//        if (clientDTO == null) return new ResponseEntity<ClientDTO>(HttpStatus.NOT_FOUND);
+//        return new ResponseEntity<ClientDTO>(clientDTO, HttpStatus.OK);
+//    }
+
     @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
-    public ResponseEntity<ClientDTO> getClient(@PathVariable("id") long id,
-                                               @ModelAttribute("client") ClientDTO clientDTO,
-                                               BindingResult bindingResult){
+    public String getClient(@PathVariable("id") long id,
+                            @ModelAttribute("client") ClientDTO clientDTO,
+                            BindingResult bindingResult,
+                            Model model){
         clientDTO = clientService.getById(id);
-        if (clientDTO == null) return new ResponseEntity<ClientDTO>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<ClientDTO>(clientDTO, HttpStatus.OK);
+        model.addAttribute("client", clientDTO);
+        return "delete_client_modal :: deleteUserModal";
     }
 
     @RequestMapping(value = "admin/clients/edit", method = RequestMethod.GET)
