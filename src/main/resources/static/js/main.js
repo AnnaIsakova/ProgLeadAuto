@@ -1,16 +1,16 @@
-var btnAddPhone = document.getElementById("btnAddPhone");
-var phoneNumber = document.getElementById("phonenumber");
+
 var psw = document.getElementById("inputPassword1");
 var confirmPsw = document.getElementById("inputPassword2");
 
-btnAddPhone.addEventListener("click", function() {
-	var len = phoneNumber.getElementsByTagName("input").length;
-	if (len >= 3) return;
-	len++;
-	var div = document.createElement('div');
-	div.className = "form-group";
-	div.innerHTML =
-		`<div class="input-group">
+document.addEventListener("click", function(){
+    var phoneNumber = document.getElementById("phoneNumber");
+    var len = phoneNumber.getElementsByTagName("input").length;
+    if (len >= 3) return;
+    len++;
+    var div = document.createElement('div');
+    div.className = "form-group";
+    div.innerHTML =
+        `<div class="input-group">
 			<input 
 			th:field="*{phone${len}}" 
 			type='text' class='form-control' 
@@ -21,7 +21,7 @@ btnAddPhone.addEventListener("click", function() {
 				<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
 			</span>
 		</div>`;
-	phoneNumber.appendChild(div);
+    phoneNumber.appendChild(div);
 }, false);
 
 if (psw && confirmPsw) {

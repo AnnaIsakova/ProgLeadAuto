@@ -17,6 +17,9 @@
 	<div id="editUserModalHolder">
 		<div th:replace="edit_client_modal :: editUserModal"></div>
 	</div>
+	<div id="addUserModalHolder">
+		<div th:replace="register_client_modal :: addUserModal"></div>
+	</div>
 
 	<div th:replace="navbar :: navbar"></div>
 
@@ -42,7 +45,7 @@
 
 			<div th:if="${numUsers} == 0">
 				<div class="m-bot-10">There are no clients yet</div>
-				<a class="btn btn-success" href="/clients/create">Add new client</a>
+				<button class="btn btn-success" th:onclick="'javascript:openAddingModal();'">Add new client</button>
 			</div>
 			<div th:if="${numUsers} > 0">
 				<table class="table table-sm table-responsive">
@@ -109,7 +112,7 @@
 						</nav>
 					</div>
 					<div class="btn-newclient">
-						<a class="btn btn-success fl-r" href="/clients/create">Add new client</a>
+						<button class="btn btn-success fl-r" th:onclick="'javascript:openAddingModal();'">Add new client</button>
 					</div>
 				</div>
 			</div>
@@ -216,7 +219,6 @@
 		  $.ajax({
 			  url: '/clients/' + id,
 			  success: function (data) {
-                  console.log(data);
                   $("#deleteUserModalHolder").html(data);
                   $("#deleteUserModal").modal("show");
               }
@@ -227,9 +229,19 @@
           $.ajax({
               url: '/admin/clients/edit/' + id,
               success: function (data) {
-                  console.log(data);
                   $("#editUserModalHolder").html(data);
                   $("#editUserModal").modal("show");
+              }
+          })
+      }
+
+      function openAddingModal() {
+          $.ajax({
+              url: '/clients/create',
+              success: function (data) {
+                  console.log(data);
+                  $("#addUserModalHolder").html(data);
+                  $("#addUserModal").modal("show");
               }
           })
       }

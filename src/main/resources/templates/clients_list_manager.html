@@ -12,6 +12,9 @@
 </head>
 <body class="bg-light-green color-grey1">
 
+	<div id="addUserModalHolder">
+		<div th:replace="register_client_modal :: addUserModal"></div>
+	</div>
 
 	<div th:replace="navbar :: navbar"></div>
 
@@ -28,7 +31,7 @@
 		<div>
 			<div th:if="${clients.empty}">
 				<div class="m-bot-10">There are no clients yet</div>
-				<a class="btn btn-success" href="/clients/create">Add new client</a>
+				<button class="btn btn-success" th:onclick="'javascript:openAddingModal();'">Add new client</button>
 			</div>
 			<div th:if="${!clients.empty}">
 				<table class="table table-sm table-responsive">
@@ -90,7 +93,7 @@
 						</nav>
 					</div>
 					<div class="btn-newclient">
-						<a class="btn btn-success fl-r" href="/clients/create">Add new client</a>
+						<button class="btn btn-success fl-r" th:onclick="'javascript:openAddingModal();'">Add new client</button>
 					</div>
 				</div>
 			</div>
@@ -103,6 +106,19 @@
 	<script src="/libs/bootstrap/js/bootstrap.js"></script>
 	<script src="/js/main.js"></script>
 
-
+	<script type="text/javascript">
+        //<![CDATA[
+        function openAddingModal() {
+            $.ajax({
+                url: '/clients/create',
+                success: function (data) {
+                    console.log(data);
+                    $("#addUserModalHolder").html(data);
+                    $("#addUserModal").modal("show");
+                }
+            })
+        }
+        //]]>
+	</script>
 </body>
 </html>

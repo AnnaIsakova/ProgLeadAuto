@@ -5,66 +5,40 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="modal fade" id="editUserModal" tabindex="-1" th:fragment="editUserModal">
+    <div class="modal fade" id="addUserModal" tabindex="-1" th:fragment="addUserModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form
-                        th:action="@{/admin/clients/edit}"
+                        th:action="@{/clients/create}"
                         th:object="${client}"
                         method="POST"
                         class="p-2"
-                        id="editUserForm">
+                        id="addUserForm">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit user</h5>
+                    <h5 class="modal-title">Add new client</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                        <input type="hidden" th:field="*{id}"/>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input
-                                        th:field="*{phone}"
-                                        type="text"
-                                        class="form-control"
-                                        id="phone"
-                                        placeholder="Main phone"
-                                        name="phone"
-                                        required="required"/>
-                                <span class="input-group-addon">
-							<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
-						</span>
-                            </div>
+                    <div class="form-group" id="phoneNumber">
+                        <div class="input-group m-bot-15">
+                            <input
+                                    th:field="*{phone}"
+                                    type="text"
+                                    class="form-control"
+                                    id="inputPhone1"
+                                    name="phone1"
+                                    placeholder="Main phone"
+                                    required="required"/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button" id="btnAddPhone">
+                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                </button>
+  						    </span>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input
-                                        th:field="*{phone2}"
-                                        type="text"
-                                        class="form-control"
-                                        id="phone2"
-                                        placeholder="Phone 2"
-                                        name="phone2"/>
-                                <span class="input-group-addon">
-							<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
-						</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input
-                                        th:field="*{phone3}"
-                                        type="text"
-                                        class="form-control"
-                                        id="phone3"
-                                        placeholder="Phone 3"
-                                        name="phone3"/>
-                                <span class="input-group-addon">
-							<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
-						</span>
-                            </div>
-                        </div>
+                    </div>
+
                         <div class="form-group">
                             <div class="input-group">
                                 <input
@@ -75,8 +49,8 @@
                                         name="firstName"
                                         placeholder="First name"/>
                                 <span class="input-group-addon">
-	            	 	<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-	            	 	</span>
+	            	 	            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+	            	 	        </span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -89,8 +63,8 @@
                                         id="inputLastName"
                                         placeholder="Last name"/>
                                 <span class="input-group-addon">
-	            		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-	            		</span>
+	            		            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+	            		        </span>
                             </div>
                         </div>
 
@@ -104,8 +78,8 @@
                                         placeholder="Email"
                                         name="email"/>
                                 <span class="input-group-addon">
-				    		<i class="fa fa-envelope" aria-hidden="true"></i>
-				    	</span>
+				    		        <i class="fa fa-envelope" aria-hidden="true"></i>
+				    	        </span>
                             </div>
                         </div>
 
@@ -119,8 +93,8 @@
                                         name="skype"
                                         placeholder="Skype"/>
                                 <span class="input-group-addon">
-			    			<i class="fa fa-skype" aria-hidden="true"></i>
-			    		</span>
+			    			        <i class="fa fa-skype" aria-hidden="true"></i>
+			    		        </span>
                             </div>
                         </div>
 
@@ -141,9 +115,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit"
-                            class="btn btn-yellow"
+                            class="btn btn-success"
                             id="edit">
-                        Save changes
+                        Save
                     </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>

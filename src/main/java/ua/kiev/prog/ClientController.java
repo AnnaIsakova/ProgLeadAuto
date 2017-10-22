@@ -30,7 +30,7 @@ public class ClientController {
 
     @RequestMapping(value = "/clients/create", method = RequestMethod.GET)
     public String getRegisterPage(@ModelAttribute("client") ClientDTO clientDTO, BindingResult bindingResult, Model model){
-        return "register";
+        return "register_client_modal :: addUserModal";
     }
 
     @RequestMapping(value = "/clients/create", method = RequestMethod.POST)
