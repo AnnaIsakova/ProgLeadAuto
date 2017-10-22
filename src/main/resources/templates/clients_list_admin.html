@@ -14,6 +14,9 @@
 	<div id="deleteUserModalHolder">
 		<div th:replace="delete_client_modal :: deleteUserModal"></div>
 	</div>
+	<div id="editUserModalHolder">
+		<div th:replace="edit_client_modal :: editUserModal"></div>
+	</div>
 
 	<div th:replace="navbar :: navbar"></div>
 
@@ -75,9 +78,7 @@
 								<td th:text="${client.skype}"></td>
 								<td th:text="${client.facebook}"></td>
 								<td>
-									<a class="btn btn-yellow" th:href="@{/admin/clients/edit(clientId=${client.id})}">
-										Edit
-									</a>
+									<button th:onclick="'javascript:openEditingModal(\'' + ${client.id} + '\');'" class="btn btn-yellow">Edit</button>
 									<button th:onclick="'javascript:openDeletingModal(\'' + ${client.id} + '\');'" class="btn btn-red">Delete</button>
 								</td>
 							</tr>
@@ -151,9 +152,7 @@
 							<td th:text="${client.skype}"></td>
 							<td th:text="${client.facebook}"></td>
 							<td>
-								<a class="btn btn-yellow" th:href="@{/admin/clients/edit(clientId=${client.id})}">
-									Edit
-								</a>
+								<button th:onclick="'javascript:openEditingModal(\'' + ${client.id} + '\');'" class="btn btn-yellow">Edit</button>
 								<button th:onclick="'javascript:openDeletingModal(\'' + ${client.id} + '\');'" class="btn btn-red">Delete</button>
 							</td>
 						</tr>
@@ -218,13 +217,21 @@
 			  url: '/clients/' + id,
 			  success: function (data) {
                   console.log(data);
-//				$('#clientPhone').html(data.phone);
-//				$('#deleteClientForm').attr('action', '/admin/clients/delete?clientId=' + data.id);
-//				$("#deleteUserModal").modal("show");
                   $("#deleteUserModalHolder").html(data);
                   $("#deleteUserModal").modal("show");
               }
 		  })
+      }
+
+      function openEditingModal(id) {
+          $.ajax({
+              url: '/admin/clients/edit/' + id,
+              success: function (data) {
+                  console.log(data);
+                  $("#editUserModalHolder").html(data);
+                  $("#editUserModal").modal("show");
+              }
+          })
       }
       //]]>
    </script>

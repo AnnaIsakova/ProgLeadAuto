@@ -75,16 +75,6 @@ public class ClientController {
         }
     }
 
-//    @ResponseBody
-//    @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
-//    public ResponseEntity<ClientDTO> getClient(@PathVariable("id") long id,
-//                                               @ModelAttribute("client") ClientDTO clientDTO,
-//                                               BindingResult bindingResult){
-//        clientDTO = clientService.getById(id);
-//        if (clientDTO == null) return new ResponseEntity<ClientDTO>(HttpStatus.NOT_FOUND);
-//        return new ResponseEntity<ClientDTO>(clientDTO, HttpStatus.OK);
-//    }
-
     @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
     public String getClient(@PathVariable("id") long id,
                             @ModelAttribute("client") ClientDTO clientDTO,
@@ -95,15 +85,15 @@ public class ClientController {
         return "delete_client_modal :: deleteUserModal";
     }
 
-    @RequestMapping(value = "admin/clients/edit", method = RequestMethod.GET)
-    public String getEditClientPage(
-            @RequestParam("clientId") long id,
+    @RequestMapping(value = "admin/clients/edit/{id}", method = RequestMethod.GET)
+    public String getEditClientModal(
+            @PathVariable("id") long id,
             @ModelAttribute("client") ClientDTO clientDTO,
             BindingResult bindingResult,
             Model model){
         clientDTO = clientService.getById(id);
         model.addAttribute("client", clientDTO);
-        return "edit_client";
+        return "edit_client_modal :: editUserModal";
     }
 
     @RequestMapping(value = "admin/clients/edit", method = RequestMethod.POST)
