@@ -20,7 +20,6 @@ public class Application {
 			public void run(String... strings) throws Exception {
 				ShaPasswordEncoder encoder = new ShaPasswordEncoder();
 
-
 				Client manager = new Client();
 				manager.setPhone("111");
 				manager.setPassword("111");
@@ -32,6 +31,14 @@ public class Application {
 				admin.setPassword("222");
 				admin.setRole(UserRole.ADMIN);
 				clientService.create(admin.toDTO());
+
+				for (int i = 0; i < 20; i++) {
+					Client client = new Client();
+					Integer phone = i * 11111111;
+					client.setPhone(phone.toString());
+					client.setRole(UserRole.USER);
+					clientService.create(client.toDTO());
+				}
 			}
 		};
 	}
