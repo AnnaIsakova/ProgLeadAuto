@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="/libs/bootstrap/css/bootstrap-grid.css"/>
 	<link rel="stylesheet" type="text/css" href="/libs/fontAwesome/css/font-awesome.css"/>
 	<link rel="stylesheet" href="/css/styles.css"/>
+	<link rel="stylesheet" type="text/css" href="/libs/DataTables/datatables.min.css"/>
 	<title>Title</title>
 </head>
 <body class="bg-light-green color-grey1">
@@ -34,10 +35,9 @@
 				<button class="btn btn-success" th:onclick="'javascript:openAddingModal();'">Add new client</button>
 			</div>
 			<div th:if="${!clients.empty}">
-				<table class="table table-sm table-responsive">
+				<table id="clientsTable" class="table table-sm table-responsive">
 					<thead>
 						<tr class="table-light table-bg">
-							<th>#</th>
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th>Phones</th>
@@ -52,7 +52,6 @@
 								  th:if="${client.role == T(ua.kiev.prog.UserRole).USER}"
 								  >
 							<tr class="table-light">
-								<th th:text="${client.id}"></th>
 								<td th:text="${client.name}"></td>
 								<td th:text="${client.surname}"></td>
 								<td>
@@ -69,33 +68,7 @@
 						</th:block>
 					</tbody>
 				</table>
-				<div class="pagination_panel">
-					<div class="empty-block-01"></div>
-					<div class="navigation-num">
-						<nav aria-label="Page navigation" class="p-2">
-							<ul class="pagination mb-0 justify-content-center">
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Previous">
-										<span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-									</a>
-								</li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Next">
-										<span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-									</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-					<div class="btn-newclient">
-						<button class="btn btn-success fl-r" th:onclick="'javascript:openAddingModal();'">Add new client</button>
-					</div>
-				</div>
+				<button class="btn btn-success fl-r btn-newclient" th:onclick="'javascript:openAddingModal();'">Add new client</button>
 			</div>
 		</div>
 
@@ -105,6 +78,7 @@
 	<script src="/libs/popper/popper.min.js"></script>
 	<script src="/libs/bootstrap/js/bootstrap.js"></script>
 	<script src="/js/main.js"></script>
+	<script type="text/javascript" src="/libs/DataTables/datatables.min.js"></script>
 
 	<script type="text/javascript">
         //<![CDATA[
@@ -118,6 +92,10 @@
                 }
             })
         }
+
+        $(document).ready(function() {
+            $('#clientsTable').DataTable();
+        } );
         //]]>
 	</script>
 </body>
