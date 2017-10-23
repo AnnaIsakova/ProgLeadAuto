@@ -1,8 +1,7 @@
-
 var psw = document.getElementById("inputPassword1");
 var confirmPsw = document.getElementById("inputPassword2");
 
-document.addEventListener("click", function(){
+function addInput() {
     var phoneNumber = document.getElementById("phoneNumber");
     var len = phoneNumber.getElementsByTagName("input").length;
     if (len >= 3) return;
@@ -22,7 +21,7 @@ document.addEventListener("click", function(){
 			</span>
 		</div>`;
     phoneNumber.appendChild(div);
-}, false);
+}
 
 if (psw && confirmPsw) {
 
