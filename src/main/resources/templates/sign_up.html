@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 	<meta charset="UTF-8"/>
 	<meta name="viewport" 
@@ -13,7 +13,17 @@
 <body class="bg-light-green color-grey">
 <div class="vertical-center">
 	<div class="container">
-		<div class="text-center">
+		<div class="text-center" sec:authorize="isAuthenticated()">
+			<h2 class="p-2">
+				Please, logout before signing up
+			</h2>
+			<div class="margin-0-auto form col-md-4  col-sm-6 col-xs-auto">
+				<a href="/logout" class="btn btn-dark-green btn-block">
+					Logout
+				</a>
+			</div>
+		</div>
+		<div class="text-center" sec:authorize="isAnonymous()">
 			<h2 class="p-2">
 				Please, Sign Up
 			</h2>
@@ -23,7 +33,7 @@
 					class="margin-0-auto form col-md-4  col-sm-6 col-xs-auto p-2"
 					id="signUpForm">
 
-				<div class="form-group" id="phonenumber">
+				<div class="form-group" id="phoneNumber">
 					<div class="input-group m-bot-15">
 						<input
 								th:field="*{phone}"
@@ -34,7 +44,7 @@
 							    placeholder="Main phone (will be used as login)"
 							    required="required"/>
 						<span class="input-group-btn">
-							<button class="btn btn-secondary" type="button" id="btnAddPhone">
+							<button onclick="addInput()" class="btn btn-secondary" type="button" id="btnAddPhone">
 								<i class="fa fa-plus-circle" aria-hidden="true"></i>
 							</button>
   						</span>
