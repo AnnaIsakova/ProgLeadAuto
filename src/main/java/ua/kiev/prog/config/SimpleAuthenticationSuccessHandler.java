@@ -1,4 +1,4 @@
-package ua.kiev.prog;
+package ua.kiev.prog.config;
 
 
 import org.springframework.security.core.Authentication;

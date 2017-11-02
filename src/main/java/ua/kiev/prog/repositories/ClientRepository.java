@@ -1,7 +1,8 @@
-package ua.kiev.prog;
+package ua.kiev.prog.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import ua.kiev.prog.entities.Client;
 
 import java.util.List;
 

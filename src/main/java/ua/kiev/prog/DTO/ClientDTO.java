@@ -1,8 +1,9 @@
-package ua.kiev.prog;
+package ua.kiev.prog.DTO;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.kiev.prog.entities.UserRole;
 
 @NoArgsConstructor
 @Getter

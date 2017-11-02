@@ -1,10 +1,11 @@
-package ua.kiev.prog;
+package ua.kiev.prog.validators;
 
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import ua.kiev.prog.DTO.ClientDTO;
 
 @Component
 public class UserValidator implements Validator {

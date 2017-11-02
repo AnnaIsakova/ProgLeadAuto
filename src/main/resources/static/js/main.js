@@ -16,7 +16,7 @@ function addInput() {
 			id='inputPhone${len}' 
 			name='phone${len}' 
 			placeholder='Phone ${len}'>
-			<span class="input-group-addon">
+			<span class="input-group-addon pad-l-r-10">
 				<i class="fa fa-phone fa-lg" aria-hidden="true"></i>
 			</span>
 		</div>`;

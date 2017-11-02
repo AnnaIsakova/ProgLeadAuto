@@ -64,7 +64,7 @@
 					<tbody>
 						<th:block th:each="client : ${clients}"
 								  th:object="${client}"
-								  th:if="${client.role == T(ua.kiev.prog.UserRole).USER}"
+								  th:if="${client.role == T(ua.kiev.prog.entities.UserRole).USER}"
 								  >
 							<tr class="table-light">
 								<td th:text="${client.name}"></td>
@@ -111,7 +111,7 @@
 					<tbody>
 					<th:block th:each="client : ${clients}"
 							  th:object="${client}"
-							  th:if="${client.role == T(ua.kiev.prog.UserRole).MANAGER}">
+							  th:if="${client.role == T(ua.kiev.prog.entities.UserRole).MANAGER}">
 						<tr class="table-light">
 							<td th:text="${client.name}"></td>
 							<td th:text="${client.surname}"></td>

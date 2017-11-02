@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import ua.kiev.prog.entities.Client;
+import ua.kiev.prog.entities.UserRole;
+import ua.kiev.prog.services.ClientService;
 
 @SpringBootApplication
 public class Application {

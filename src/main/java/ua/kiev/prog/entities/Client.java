@@ -1,8 +1,9 @@
-package ua.kiev.prog;
+package ua.kiev.prog.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.kiev.prog.DTO.ClientDTO;
 
 import javax.persistence.*;
 
