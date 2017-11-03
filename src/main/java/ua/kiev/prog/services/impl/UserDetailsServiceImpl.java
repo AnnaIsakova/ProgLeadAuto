@@ -1,4 +1,4 @@
-package ua.kiev.prog.services;
+package ua.kiev.prog.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
