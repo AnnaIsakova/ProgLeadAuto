@@ -8,18 +8,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import ua.kiev.prog.entities.others.Client;
 import ua.kiev.prog.entities.others.UserRole;
+import ua.kiev.prog.modules.EmailSender;
 import ua.kiev.prog.modules.SmsSender;
 import ua.kiev.prog.services.ClientService;
 
-//@EntityScan(basePackages = "ua.kiev.prog.entities")
-//@ComponentScan("ua.kiev.prog")
 @SpringBootApplication
 public class Application {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(Application.class, args);
-		SmsSender sender = (SmsSender) context.getBean("smsSender");
-		System.out.println("BEAN: " + sender.getName());
+		SmsSender smsSender = (SmsSender) context.getBean("smsSender");
+		System.out.println("BEAN: " + smsSender.getName());
+		EmailSender emailSender = (EmailSender) context.getBean("emailSender");
+		System.out.println("BEAN: " + emailSender.getName());
 	}
 
 	@Bean
