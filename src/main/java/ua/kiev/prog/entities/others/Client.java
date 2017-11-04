@@ -1,4 +1,4 @@
-package ua.kiev.prog.entities;
+package ua.kiev.prog.entities.others;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,6 +43,7 @@ public class Client {
     @Column(unique = true)
     private String facebook;
 
+    @Column(nullable = false)
     private boolean isDeleted;
 
     public ClientDTO toDTO(){

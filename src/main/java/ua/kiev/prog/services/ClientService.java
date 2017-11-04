@@ -5,8 +5,8 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.kiev.prog.DTO.ClientDTO;
-import ua.kiev.prog.entities.Client;
-import ua.kiev.prog.repositories.ClientRepository;
+import ua.kiev.prog.entities.others.Client;
+import ua.kiev.prog.repositories.others.ClientRepository;
 
 import java.util.ArrayList;
 import java.util.List;

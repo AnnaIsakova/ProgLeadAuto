@@ -12,7 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import ua.kiev.prog.DTO.ClientDTO;
-import ua.kiev.prog.entities.UserRole;
+import ua.kiev.prog.entities.others.UserRole;
 import ua.kiev.prog.validators.UserValidator;
 import ua.kiev.prog.services.ClientService;
 

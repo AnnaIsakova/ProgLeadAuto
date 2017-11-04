@@ -3,7 +3,7 @@ package ua.kiev.prog.DTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ua.kiev.prog.entities.UserRole;
+import ua.kiev.prog.entities.others.UserRole;
 
 @NoArgsConstructor
 @Getter

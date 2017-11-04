@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ua.kiev.prog.DTO.ClientDTO;
-import ua.kiev.prog.entities.UserRole;
+import ua.kiev.prog.entities.others.UserRole;
 import ua.kiev.prog.validators.UserValidator;
 import ua.kiev.prog.services.ClientService;
 

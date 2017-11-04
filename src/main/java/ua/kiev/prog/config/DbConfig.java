@@ -14,4 +14,12 @@ public class DbConfig {
                 .driverClassName(driver)
                 .build();
     }
+
+    public static DataSource createDataSource(String url, String userName, String password){
+        return DataSourceBuilder.create()
+                .username(userName)
+                .password(password)
+                .url(url)
+                .build();
+    }
 }

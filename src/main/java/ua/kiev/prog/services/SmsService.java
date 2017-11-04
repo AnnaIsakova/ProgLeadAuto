@@ -1,6 +1,6 @@
 package ua.kiev.prog.services;
 
-import ua.kiev.prog.entities.Sms;
+import ua.kiev.prog.entities.sms.Sms;
 
 public interface SmsService {
     void addSms(Sms sms);

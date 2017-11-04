@@ -3,17 +3,23 @@ package ua.kiev.prog;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import ua.kiev.prog.entities.Client;
-import ua.kiev.prog.entities.UserRole;
+import ua.kiev.prog.entities.others.Client;
+import ua.kiev.prog.entities.others.UserRole;
+import ua.kiev.prog.modules.SmsSender;
 import ua.kiev.prog.services.ClientService;
 
+//@EntityScan(basePackages = "ua.kiev.prog.entities")
+//@ComponentScan("ua.kiev.prog")
 @SpringBootApplication
 public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		ApplicationContext context = SpringApplication.run(Application.class, args);
+		SmsSender sender = (SmsSender) context.getBean("smsSender");
+		System.out.println("BEAN: " + sender.getName());
 	}
 
 	@Bean
@@ -27,12 +33,14 @@ public class Application {
 				manager.setPhone("111");
 				manager.setPassword("111");
 				manager.setRole(UserRole.MANAGER);
+				manager.setDeleted(false);
 				clientService.create(manager.toDTO());
 
 				Client admin = new Client();
 				admin.setPhone("222");
 				admin.setPassword("222");
 				admin.setRole(UserRole.ADMIN);
+				admin.setDeleted(false);
 				clientService.create(admin.toDTO());
 
 				for (int i = 0; i < 20; i++) {
@@ -40,6 +48,7 @@ public class Application {
 					Integer phone = i * 11111111;
 					client.setPhone(phone.toString());
 					client.setRole(UserRole.USER);
+					client.setDeleted(false);
 					clientService.create(client.toDTO());
 				}
 			}

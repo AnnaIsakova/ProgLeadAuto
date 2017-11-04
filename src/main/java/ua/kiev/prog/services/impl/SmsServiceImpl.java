@@ -2,9 +2,8 @@ package ua.kiev.prog.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ua.kiev.prog.entities.Sms;
-import ua.kiev.prog.repositories.SmsRepository;
+import ua.kiev.prog.entities.sms.Sms;
+import ua.kiev.prog.repositories.sms.SmsRepository;
 import ua.kiev.prog.services.SmsService;
 
 @Service

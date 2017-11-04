@@ -1,4 +1,4 @@
-package ua.kiev.prog.entities;
+package ua.kiev.prog.entities.sms;
 
 import org.springframework.transaction.annotation.Transactional;
 
